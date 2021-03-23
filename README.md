@@ -26,7 +26,7 @@ crawfishBodies.stream().pipe(destStream())
 ### Async Iterator
 
 ```js
-for await (const vf of crawfishBodies.readable()){
+for await (const vf of crawfishBodies.iter()){
   console.log({vf})
 }
 ```
