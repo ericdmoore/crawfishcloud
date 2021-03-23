@@ -36,3 +36,6 @@ for await (const vf of crawfishBodies.iter()){
 ```js
 const allJpgs = await crawfishBodies.all()
 ```
+
+#### namesake
+`crawfish cloud` because regular crawfish are delightful and they crawl around amongst the buckets - but crawfishcloud crawl in the cloud buckets.
