@@ -19,6 +19,20 @@ const crawfishBodies = crawler.body({ s3:s3c, filters:['/prefix/**/.jpg'], as:'v
 
 ### Stream< Vfile | Vinyl >
 
+```js
+crawfishBodies.stream().pipe(destStream())
+```
+
 ### Async Iterator
 
+```js
+for await (const vf of crawfishBodies.readable()){
+  console.log({vf})
+}
+```
+
 ### Promise<Arrray<Vfile | Vinyl>>
+
+```js
+const allJpgs = await crawfishBodies.all()
+```
