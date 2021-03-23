@@ -1,5 +1,10 @@
 # crawfishcloud
+
 A Streaming S3 Bucket Glob Crawler
+
+## Install
+
+`npm i crawfishcloud`
 
 ## Setup
 
