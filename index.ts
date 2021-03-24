@@ -1,23 +1,21 @@
 import type {S3} from 'aws-sdk'
 import stream, {Readable, Transform} from 'stream'
+import {URL} from 'url'
 import vfile from 'vfile'
 import vinyl from 'vinyl'
-import {URL} from 'url'
-
-
-
 
 export const s3urlToConfig = (s3url:string)=>{
-    return {}
+    const s3Cfg = new URL(s3url)
+    const qs: {[param:string]:string} = {... s3Cfg.searchParams }
+    return {Bucket:s3Cfg.hostname, Key: s3Cfg.pathname, ...qs}
 }
 
 export const s3ConfigToUrl = (s3cfg: S3Config )=>{
     const {Bucket, Key, ...others} = s3cfg
-    let s3url = `s3://${Bucket}/${Key}`
-    let s3urlq = Object.entries(others).reduce((p,[key, val])=>{
-        return ''
-    },'' as string)
-
+    const s3urlQ = Object.entries(others).map(([key, val])=>{
+        return `${encodeURI(key)}=${encodeURI(val)}`
+    }).join('&')
+    return `s3://${Bucket}/${Key}${ s3urlQ.length > 0 ? `?${s3urlQ}` : ''}`
 }
 export const crawler = ()=>{
     const iter = ()=>{}
