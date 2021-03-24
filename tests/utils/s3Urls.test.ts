@@ -1,4 +1,4 @@
-import type { ITestResults ,ITestFunc} from '../index.test'
+import type { ITestResults ,ITestFunc} from '../types'
 //
 import {runTests, compare, skip} from '../index.test'
 import {s3ConfigToUrl, s3urlToConfig,} from '../../index'

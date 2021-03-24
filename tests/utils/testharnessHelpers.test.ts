@@ -1,6 +1,6 @@
-import { ITestResults, ITestFunc, makeResult } from '../index.test'
+import type { ITestResults, ITestFunc } from '../types'
 //
-import {runTests, compare, skip} from '../index.test'
+import {makeResult, runTests, compare, skip} from '../index.test'
 
 /**
  * A Test for runTest 
