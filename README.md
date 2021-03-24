@@ -1,6 +1,8 @@
 # crawfishcloud
 
-A Streaming S3 Bucket Glob Crawler
+> A Streaming S3 Bucket Glob Crawler
+
+![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds](/imgs/deepart2.jpg)
 
 ## Install
 
@@ -17,7 +19,12 @@ const asVfile = (s3Item) => vfile({path:s3Item.Key, contents: s3Item.Body})
 const creds = new SharedCredentials({profile: 'default'})
 const s3c = new S3({creds})
 const crawfishHeads = crawler({s3:s3c}) // defaults to head
-const crawfishBodies = crawler.body({ s3:s3c, filters:['/prefix/**/.jpg'], as:'vfile' | 'vinyl' | asVfile })
+const crawfishBodies = crawler.body({ 
+    s3:s3c, 
+    filters:['/prefix/**/.jpg'], 
+    as: asVfile 
+  })
+
 ```
 
 ## Usage
