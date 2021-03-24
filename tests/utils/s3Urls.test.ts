@@ -16,20 +16,21 @@ const testToConfig:ITestFunc = async (priorState, i) =>[
 
 const testToString:ITestFunc = async (prior, i)=> {
     console.log('Suite: testToString')
-    const tests = [
-        (p:ITestResults, i:number) => compare(
-            i,p,'basic',
+    const t = compare(__filename)
+    const tests: ITestFunc[] =[
+        (p, i) => t(i,p,
+            'basic',
             s3ConfigToUrl({Bucket:'head', Key:'keepCalm'}), 
             's3://head/keepCalm'
         ),
-        (p:ITestResults, i:number) => compare( 
-            i,p,'extra vars',
+        (p:ITestResults, i:number) => t(i,p,
+            'extra vars',
             s3ConfigToUrl({Bucket:'head', Key:'keepCalm', other:'1', lastly:'dood'}),
             's3://head/keepCalm?other=1&lastly=dood'
         )
     ]
     const newState = runTests(prior, ...tests)
-    console.log('s3urls__32:',JSON.stringify({prior, newState},null, 2))
+    // console.log('s3urls__32:',JSON.stringify({prior, newState},null, 2))
     return newState
 }
 
@@ -42,4 +43,3 @@ export const test:ITestFunc = async (prior)=>{
     const newState = runTests(prior,...tests)
     return newState
 }
-export default test

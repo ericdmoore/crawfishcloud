@@ -85,19 +85,28 @@ const compareTests:ITestFunc = async (p,i)=>{
             const a = 1
             const e = 1
 
+
+            // usually this is handled in the compare func
             const testDtl = makeResult(__filename, i, 'basic passing test','should increment `tests that passed`',a,e)
-            const newState = await compare(i, localPrior, 'basic Compare', a, e)
+            const newState = await compare(__filename)(i,localPrior, 'basic Compare', a, e)
 
             // did the compare func work?
             if(newState.passed.length = 1){
-                p.passed.push(testDtl)
+                return {
+                    passed:[...p.passed, testDtl], 
+                    failed:[...p.failed], 
+                    skipped:[...p.skipped]
+                }
             } else{
-                p.failed.push(testDtl)
+                return {
+                    passed:[...p.passed], 
+                    failed:[...p.failed, testDtl], 
+                    skipped:[...p.skipped]
+                }
             }
-            return p
         }
     ]
-    return p
+    return runTests(p, ...tests)
 }
 
 /**
@@ -105,7 +114,27 @@ const compareTests:ITestFunc = async (p,i)=>{
  */
 const skipTests:ITestFunc = async (p,i)=>{
     const tests: ITestFunc[] = [
-        (p,i)=>skip(i,p,'Skipping',null, null)
+        async (p,i)=>{
+            const localPrior:ITestResults = {failed:[], passed:[], skipped:[]}
+            const newLocalState = await runTests(localPrior, async (p,i) => skip(__filename)(i,p,'Skipping',null, null))
+            
+            const testdtl = makeResult(__filename, i, 'Verifying Skip', 'Verify Skip will Skip',null, null)
+            if(newLocalState.skipped.length ===1){
+                return { 
+                    // skip did what it should - it "skipped" thus that is a pass
+                    passed:[...p.passed, testdtl],
+                    failed:[...p.failed], 
+                    skipped:[...p.skipped]
+                }
+            }else{
+                return { 
+                    // skip did not "skip" thus that is a fail
+                    passed:[...p.passed], 
+                    failed:[...p.failed, testdtl],
+                    skipped:[...p.skipped]
+                }
+            }
+        }
     ]
     return runTests(p,...tests)
 }
