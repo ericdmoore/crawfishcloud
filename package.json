@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "ts-node tests/index.test.ts",
-    "build":"",
-    "build:esbuild":"esbuild index.ts --bundle --minify > build/index.min.js",
-    "build:check":"esbuild index.ts > /dev/null"
+    "build": "nopm run build:esbuild",
+    "build:esbuild": "esbuild index.ts --bundle --minify > build/index.min.js",
+    "build:check": "esbuild index.ts > /dev/null",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "@types/node": "^14.14.35",
     "@types/vinyl": "^2.0.4",
     "esbuild": "^0.10.0",
+    "husky": "^5.2.0",
     "nyc": "^15.1.0",
     "source-map-support": "^0.5.19",
     "ts-node": "^9.1.1",
