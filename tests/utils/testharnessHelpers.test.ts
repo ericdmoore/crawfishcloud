@@ -1,6 +1,6 @@
 import type { ITestResults, ITestFunc } from '../types'
 //
-import {makeResult, runTests, compare, skip} from '../index.test'
+import {makeResult, runTests, compareInit, skipInit} from '../index.test'
 
 
 const addPassingTest:ITestFunc = async (p,i)=>({
@@ -88,7 +88,7 @@ const compareTests:ITestFunc = async (p,i)=>{
 
             // usually this is handled in the compare func
             const testDtl = makeResult(__filename, i, 'basic passing test','should increment `tests that passed`',a,e)
-            const newState = await compare(__filename)(i,localPrior, 'basic Compare', a, e)
+            const newState = await compareInit(__filename)(i,localPrior, 'basic Compare', a, e)
 
             // did the compare func work?
             if(newState.passed.length = 1){
@@ -116,7 +116,7 @@ const skipTests:ITestFunc = async (p,i)=>{
     const tests: ITestFunc[] = [
         async (p,i)=>{
             const localPrior:ITestResults = {failed:[], passed:[], skipped:[]}
-            const newLocalState = await runTests(localPrior, async (p,i) => skip(__filename)(i,p,'Skipping',null, null))
+            const newLocalState = await runTests(localPrior, async (p,i) => skipInit(__filename)(i,p,'Skipping',null, null))
             
             const testdtl = makeResult(__filename, i, 'Verifying Skip', 'Verify Skip will Skip',null, null)
             if(newLocalState.skipped.length ===1){

@@ -6,17 +6,11 @@ import {ITestFunc, ITestResults, ITestModule} from './types'
 // #region helpers
 
 
-// const print = async <T>(o:T)=>{
-//     console.log('...printing')
-//     if((o as unknown as {then: Function}).then){
-//         console.log(await o)
-//     }else{
-//         console.log(o)
-//     }
-//     return o
-// }
-
-export const compare = (fileName:string) => async (i:number | 'skip',  prior:ITestResults, message:string, a:unknown, e:unknown, using?: (a:unknown, e:unknown)=>boolean) => { 
+/**
+ * Compare Init
+ * @param fileName 
+ */
+export const compareInit = (fileName:string) => async (i:number | 'skip',  prior:ITestResults, message:string, a:unknown, e:unknown, using?: (a:unknown, e:unknown)=>boolean) => { 
     // dont mutate prior
     const newState: ITestResults = {
         skipped:[...prior.skipped], 
@@ -30,6 +24,8 @@ export const compare = (fileName:string) => async (i:number | 'skip',  prior:ITe
             // console.info(i, message)
             // console.info(a)
             // console.info(e)
+
+            
             assert(a === e, `${message} @ line: ${i}`)
             newState.passed.push(makeResult(fileName, i,message, message,e,a))
         } catch(er){
@@ -40,7 +36,7 @@ export const compare = (fileName:string) => async (i:number | 'skip',  prior:ITe
     return newState
 }
 
-export const skip = (fileName:string) => async (i:number | 'skip', prior:ITestResults, message:string, a:unknown, e:unknown, using?: (a:unknown, e:unknown)=>boolean) => { 
+export const skipInit = (fileName:string) => async (i:number | 'skip', prior:ITestResults, message:string, a:unknown, e:unknown, using?: (a:unknown, e:unknown)=>boolean) => { 
     // dont mutate prior
     const newState: ITestResults = {
         skipped:[...prior.skipped], 
@@ -82,7 +78,7 @@ const reporter = (results:ITestResults, startTime:number = Date.now())=>{
 
     console.log(`\n\n
     elapsedTime: ${elapsedTime}
-    Avg Test Time: ${totalTestNum / elapsedTime}
+    projected time @1000 tests: ${totalTestNum / elapsedTime * 1000}
     passed: ${results.passed.length}
     failed: ${results.failed.length}
     skipped: ${results.skipped.length}
@@ -95,7 +91,7 @@ const reporter = (results:ITestResults, startTime:number = Date.now())=>{
 
 // #endregion helpers
 
-/** MAIN IIFE
+/** MAIN IIFEs
  * @todo Alter path strings such that a JS build can adapt to find its kind in plain node.
  */
 ;(async ()=>{

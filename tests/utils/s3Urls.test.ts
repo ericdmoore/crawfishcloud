@@ -1,22 +1,23 @@
 import type { ITestResults ,ITestFunc} from '../types'
 //
-import {runTests, compare, skip} from '../index.test'
-import {s3ConfigToUrl, s3urlToConfig,} from '../../index'
+import {runTests, compareInit, skipInit} from '../index.test'
+import {s3ConfigToUrl, s3urlToConfig} from '../../index'
 
-    
-const testToConfig:ITestFunc = async (priorState, i) =>[
-    (p:ITestResults, i:number) => p
-].reduce(
-    async (p,fn,i)=>fn(await p,i)
-    ,Promise.resolve(priorState)
-)
+const t = compareInit(__filename)
 
 
-// const makeTest = ()=>{}
+
+const testToConfig:ITestFunc = async (p, i) =>{
+    const tests : ITestFunc[] = [
+        async (p,i)=>t(i, p, '', null, null)
+    ]
+    return runTests(p,...tests)
+}
+
 
 const testToString:ITestFunc = async (prior, i)=> {
     console.log('Suite: testToString')
-    const t = compare(__filename)
+    
     const tests: ITestFunc[] =[
         (p, i) => t(i,p,
             'basic',
@@ -29,9 +30,7 @@ const testToString:ITestFunc = async (prior, i)=> {
             's3://head/keepCalm?other=1&lastly=dood'
         )
     ]
-    const newState = runTests(prior, ...tests)
-    // console.log('s3urls__32:',JSON.stringify({prior, newState},null, 2))
-    return newState
+    return runTests(prior, ...tests) 
 }
 
 export const test:ITestFunc = async (prior)=>{

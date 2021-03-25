@@ -4,7 +4,10 @@
   "description": "A Streaming S3 Bucket Glob Crawler",
   "main": "index.js",
   "scripts": {
-    "test": "ts-node tests/index.test.ts"
+    "test": "ts-node tests/index.test.ts",
+    "build":"",
+    "build:esbuild":"esbuild index.ts --bundle --minify > build/index.min.js",
+    "build:check":"esbuild index.ts > /dev/null"
   },
   "repository": {
     "type": "git",
@@ -25,13 +28,20 @@
   },
   "homepage": "https://github.com/ericdmoore/crawfishcloud#readme",
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/node": "^14.14.35",
     "@types/vinyl": "^2.0.4",
-    "aws-sdk": "^2.870.0",
+    "esbuild": "^0.10.0",
+    "nyc": "^15.1.0",
+    "source-map-support": "^0.5.19",
     "ts-node": "^9.1.1",
+    "typedoc": "^0.20.34",
     "typescript": "^4.2.3"
   },
+  "peerDependencies": {
+    "aws-sdk": "^2.870.0"
+  },
   "dependencies": {
-    "@types/node": "^14.14.35",
     "vfile": "^4.2.1",
     "vinyl": "^2.2.1"
   }
