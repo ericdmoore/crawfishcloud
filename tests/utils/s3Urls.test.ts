@@ -1,23 +1,72 @@
-import type { ITestResults ,ITestFunc} from '../types'
+import type {ITestResults , ITestFunc} from '../types'
 //
 import {runTests, compareInit, skipInit} from '../index.test'
-import {s3ConfigToUrl, s3urlToConfig} from '../../index'
+import { s3ConfigToUrl, s3urlToConfig } from "../../src/utils"
 
 const t = compareInit(__filename)
-
+const skip = skipInit(__filename)
 
 
 const testToConfig:ITestFunc = async (p, i) =>{
     const tests : ITestFunc[] = [
-        async (p,i)=>t(i, p, '', null, null)
+        async (p,i) => {
+            const a = await s3urlToConfig('s3://BucketHead/crawfishtail/key.ext')
+            const e = {
+                Bucket:'BucketHead',
+                Key:'/crawfishtail/key.ext'
+            }
+            return t(i, p, 'EZ - Convert String to HashMap', a,e)
+        },    
+        async (p,i) => { 
+            const a = s3urlToConfig('s3://BucketHead/crawfishtail/key.ext?Other=Stuff&last=bit')
+            const e = {
+                Bucket:'BucketHead',
+                Key:'/crawfishtail/key.ext',
+                Other:'Stuff',
+                last:'bit'
+            }
+            return t(i, p, 'Convert String to HashMap w/ Query Sttring',a, e)
+        },
+        async (p,i) => {
+            const a = s3urlToConfig('s3://BucketHead')
+            const e = {
+                Bucket:'BucketHead',
+                Key:'',
+            }            
+            return t(i, p, 'Missing Path/key', a,e)
+        },
+        async (p,i) => {
+            const a = s3urlToConfig('s3://BucketHead/')
+            const e = {
+                Bucket:'BucketHead',
+                Key:'/',
+            }            
+            return t(i, p, 'Missing Path/key but has slash', a,e)
+        },
+        async (p,i) => {
+            const a = s3urlToConfig('s3://')
+            const e = { Bucket:'',Key:''}
+            return t(i, p, 'Missing Bucket', a,e)
+        },
+
+        async (p,i) => {
+            // expect to throw error
+            const TITLE = 'Rubbish input'
+            let a = {}
+            const e = null // throw error
+            try{
+                a = s3urlToConfig('asdfg')
+            } catch(er){
+                return t(i, p, TITLE, true,true)
+            }
+            return t(i, p, TITLE, false,true)
+        }
     ]
     return runTests(p,...tests)
 }
 
-
 const testToString:ITestFunc = async (prior, i)=> {
-    console.log('Suite: testToString')
-    
+    // console.log('Suite: testToString')
     const tests: ITestFunc[] =[
         (p, i) => t(i,p,
             'basic',

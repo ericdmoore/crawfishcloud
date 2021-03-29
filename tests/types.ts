@@ -19,3 +19,5 @@ export type ITestFunc = (prior:ITestResults, i: number) => Promise<ITestResults>
 export interface ITestModule{
     [testFn:string]: ITestFunc
 }
+export type MaybePromise<T> = T | Promise<T> 
+export type AsyncComparator = (a:MaybePromise<unknown>, e:MaybePromise<unknown>)=>Promise<boolean>

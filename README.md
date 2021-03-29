@@ -11,19 +11,13 @@
 ## Setup
 
 ```js
-import crawler from 'crawfishcloud'
+import crawler, {asVfile} from 'crawfishcloud'
 import {S3, SharedCredentials} from 'aws-sdk'
-import vfile from 'vfile'
 
-const asVfile = (s3Item) => vfile({path:s3Item.Key, contents: s3Item.Body})
 const creds = new SharedCredentials({profile: 'default'})
 const s3c = new S3({creds})
-const crawfishHeads = crawler({s3:s3c}) // defaults to head
-const crawfishBodies = crawler.body({ 
-    s3:s3c, 
-    filters:['/prefix/**/.jpg'], 
-    as: asVfile 
-  })
+const crawfish = crawler({s3:s3c}) // defaults to head
+const crawfishBodies = crawler.body({s3:s3c},'/prefix/**/*.jpg')
 
 ```
 
@@ -32,13 +26,13 @@ const crawfishBodies = crawler.body({
 ### Stream< Vfile | Vinyl >
 
 ```js
-crawfishBodies.stream().pipe(destStream())
+crawler.vfileStream({s3c},'/prefix/**/*.jpg').pipe(destination())
 ```
 
 ### Async Iterator
 
 ```js
-for await (const vf of crawfishBodies.iter()){
+for await (const vf of crawfishBodies.iter({body:true, using: asVfile}, 's3://Bucket/path/*.jpg' )){
   console.log({vf})
 }
 ```
@@ -46,7 +40,7 @@ for await (const vf of crawfishBodies.iter()){
 ### Promise<Arrray<Vfile | Vinyl>>
 
 ```js
-const allJpgs = await crawfishBodies.all()
+const allJpgs = await crawler.vinylArray({s3c},'s3://Bucket/path/*.jpg')
 ```
 
 #### namesake
