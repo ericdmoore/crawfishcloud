@@ -6,7 +6,7 @@
   "scripts": {
     "test": "ts-node tests/index.test.ts",
     "build": "npm run build:esbuild",
-    "build:esbuild": "esbuild src/index.ts --bundle --minify --platform=node > build/index.min.js",
+    "build:esbuild": "esbuild src/index.ts --format=iife --platform=node --minify --bundle > build/index.min.js",
     "build:check": "esbuild src/index.ts > /dev/null",
     "prepare": "husky install"
   },

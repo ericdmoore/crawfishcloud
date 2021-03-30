@@ -12,7 +12,7 @@
 
 ```js
 import crawler, {asVfile} from 'crawfishcloud'
-import {S3, SharedCredentials} from 'aws-sdk'
+import {S3, SharedIniFileCredentials} from 'aws-sdk'
 
 const creds = new SharedCredentials({profile: 'default'})
 const s3c = new S3({creds})

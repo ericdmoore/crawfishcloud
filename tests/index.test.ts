@@ -1,7 +1,9 @@
-import {ITestFunc, ITestResults, ITestModule, AsyncComparator, MaybePromise} from './types'
-import isEqual from 'lodash.isequal'
 import process from 'process'
 import chalk from 'chalk'
+import isEqual from 'lodash.isequal'
+import {ITestFunc, ITestResults, ITestModule, AsyncComparator, MaybePromise} from './types'
+
+
 // #region helpers
 /**
  * Compare Init
@@ -43,8 +45,6 @@ export const skipInit = (fileName:string) => async (
     using: AsyncComparator = async (a,e)=> await a === await e ) => 
         compareInit(fileName)('skip',prior, message, a, e, using)
 
-
-
 export const runTests = (init:ITestResults, ...fns: ITestFunc[]) => 
     fns.reduce(async (p,fn,i) => {
         return fn(await p,i)
@@ -71,8 +71,8 @@ const testAll = async (testModule: unknown, prior:ITestResults):Promise<ITestRes
 }
 
 const reporter = (results:ITestResults, startTime:number = Date.now())=>{
-    const totalTestNum = results.passed.length + results.failed.length + results.skipped.length
     const elapsedTime = (Date.now()-startTime)/1000
+    const totalTestNum = results.passed.length + results.failed.length + results.skipped.length
 
     console.log(`\n
     elapsedTime: ${elapsedTime}s
@@ -109,7 +109,10 @@ const reporter = (results:ITestResults, startTime:number = Date.now())=>{
         // because utils is a `supernode` root node of other exported tests it is a
         // './utils/',
         './utils/testharnessHelpers.test.ts',
-        './utils/s3Urls.test.ts'
+        './utils/s3Urls.test.ts',
+        './iter/iter.test.ts',
+        './all/all.test.ts',
+        // './stream/stream.test.ts'
     ]
     
     // parent module
@@ -124,7 +127,7 @@ const reporter = (results:ITestResults, startTime:number = Date.now())=>{
         
     const resultingArr = await Promise.all(resultsAwaiting)
         .catch(er=>{ 
-                console.error('mainIIFE:\n\n',er)
+                console.error('error in mainIIFE:\n\n',er)
                 return [] as ITestResults[]
         })
     
@@ -134,7 +137,5 @@ const reporter = (results:ITestResults, startTime:number = Date.now())=>{
          skipped:[...p.skipped, ...c.skipped],
     }), init)
     
-    const totalTestNum = results.passed.length + results.failed.length + results.skipped.length
-    const elapsedTime = (Date.now()-startTime)/1000
     reporter(results, startTime)
 })()        
