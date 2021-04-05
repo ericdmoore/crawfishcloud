@@ -43,25 +43,29 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ## API Reference 
 
-1. [crawler (s3c, body, maxkeys, ...filters) : AsyncGenerator](#crawler)
-1. [iter (i:{body, using, NextContinuationToken}, ...filters) : AsyncGenerator](#iter)
-1. [stream (i:{body, using}, ...filters) : Readable](#stream)
-1. [all (i:{body, using}, ...filters) : Promise<T[]>](#all)
-1. [vfileStream ( ...filters) : Readable](#vfileStream)
-1. [vinylStream (...filters) : Readable](#vinylStream)
-1. [s3Stream (...filters) : Readable](#s3Stream)
-1. [vfileIter ( ...filters) : AsyncGenerator](#vfileIter)
-1. [vinylIter (...filters) : AsyncGenerator](#vinylIter)
-1. [s3Iter (...filters) : AsyncGenerator](#s3Iter)
-1. [vfileArray ( ...filters) : Promise<VFile[]>](#vfileArray)
-1. [vinylArray (...filters) : Promise<Vinyl[]>](#vinylArray)
-1. [s3Array ( ...filters) : Promise<S3Item[]>](#s3Array)
+1. [crawler (s3c, body, maxkeys, ...filters) : crawfishcloud](#crawler)
+1. Base Functions
+    1. [iter (i:{body, using, NextContinuationToken}, ...filters) : AsyncGenerator](#iter)
+    1. [stream (i:{body, using}, ...filters) : Readable](#stream)
+    1. [all (i:{body, using}, ...filters) : Promise<T[]>](#all)
+1. Readable Node Stream Family
+    1. [vfileStream ( ...filters) : Readable](#vfileStream)
+    1. [vinylStream (...filters) : Readable](#vinylStream)
+    1. [s3Stream (...filters) : Readable](#s3Stream)
+1. AsynGenerator Family
+    1. [vfileIter ( ...filters) : AsyncGenerator](#vfileIter)
+    1. [vinylIter (...filters) : AsyncGenerator](#vinylIter)
+    1. [s3Iter (...filters) : AsyncGenerator](#s3Iter)
+1. Array Family
+    1. [vfileArray ( ...filters) : Promise<VFile[]>](#vfileArray)
+    1. [vinylArray (...filters) : Promise<Vinyl[]>](#vinylArray)
+    1. [s3Array ( ...filters) : Promise<S3Item[]>](#s3Array)
 
 ### crawler()
 
 > `function` default export "aka: crawler"
 
-- `Parameters`
+- `params`
 
   - s3c: : `S3`
   - body: : `boolean`
@@ -77,7 +81,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 > `function` returns an `AsyncGenerator<T>`
 
--  `Parameters`
+-  `params`
 
     - body : `boolean`
     - using : `UsingFunc: (i:S3Item)=><T>`
@@ -92,7 +96,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 > get a Readable Node Stream
 
-- `Parameters`
+- `params`
 
   - body : `boolean`
   - using : `UsingFunc: (i:S3Item)=><T>`
@@ -107,7 +111,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 > `function` returns a `Readable` stream
 
--  `Parameters`
+-  `params`
 
     - body : `boolean`
     - using : `UsingFunc: (i:S3Item)=><T>`
@@ -123,7 +127,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vfileStream()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -133,7 +137,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vinylStream()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -143,7 +147,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **s3Stream()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -156,7 +160,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vfileIter()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -167,7 +171,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vinylIter()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -178,7 +182,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **s3Iter()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -192,7 +196,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vfileArray()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -202,7 +206,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vinylArray()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
@@ -212,7 +216,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **s3Array()**
 
--  `Parameters`
+-  `params`
 
     - ...filters: `string[]`
 
