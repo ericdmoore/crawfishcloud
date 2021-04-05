@@ -79,7 +79,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 ### > *Base Returns* 
 ### **iter()**
 
-> `function` returns an `AsyncGenerator<T>`
+> get an `AsyncGenerator<T>` ready to use with a `for await (){}` loop where each elemement is of Type<T> based on the Using Function
 
 -  `params`
 
@@ -94,7 +94,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **stream()**
 
-> get a Readable Node Stream
+> get a Readable Node Stream ready to pipe to a transform or writable stream
 
 - `params`
 
@@ -109,7 +109,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **all()**
 
-> `function` returns a `Readable` stream
+> load all of the s3 url into an array. Where the array is resolved when all of the elements are populated to the array.
 
 -  `params`
 
@@ -127,6 +127,8 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vfileStream()**
 
+> a stream of [vfile](https://github.com/vfile/vfile)
+
 -  `params`
 
     - ...filters: `string[]`
@@ -137,6 +139,8 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vinylStream()**
 
+> a stream of [vinyls](https://github.com/gulpjs/vinyl)
+
 -  `params`
 
     - ...filters: `string[]`
@@ -146,6 +150,8 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     - `Readable`
 
 ### **s3Stream()**
+
+> a stream of S3 Items where S3 list object keys are mixed in with the the getObject keys - called an `S3Item`
 
 -  `params`
 
@@ -160,36 +166,41 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vfileIter()**
 
+> get an AyncGenerator thats is ready to run through a set of `VFiles`
+
 -  `params`
 
     - ...filters: `string[]`
 
 -  `returns`
 
-    - AsyncGenerator<VFile, void, undefined>
+    - `AsyncGenerator<VFile, void, undefined>`
 
 
 ### **vinylIter()**
 
+> get an AyncGenerator thats is ready to run through a set of `Vinyls`
+
 -  `params`
 
     - ...filters: `string[]`
 
 -  `returns`
 
-    - AsyncGenerator<Vinyl, void, undefined>
+    - `AsyncGenerator<Vinyl, void, undefined>`
 
 
 ### **s3Iter()**
 
+> get an AyncGenerator thats is ready to run through a set of `S3Item`
+
 -  `params`
 
     - ...filters: `string[]`
 
 -  `returns`
 
-    - AsyncGenerator<S3Item,void, undefined>
-
+    - `AsyncGenerator<S3Item, void, undefined>`
 
 
 ### > *Array Returns Promise<T[]>* 
@@ -202,7 +213,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `returns`
 
-    - AsyncGenerator<Vinyl, void, undefined>
+    - Promise<Vfile[]>
 
 ### **vinylArray()**
 
@@ -212,7 +223,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `returns`
 
-    - AsyncGenerator<Vinyl, void, undefined>
+    - Promise<Vinyl[]>
 
 ### **s3Array()**
 
@@ -222,8 +233,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `returns`
 
-    - AsyncGenerator<Vinyl, void, undefined>
-
+    - Promise<S3Item[]>
 
 #### namesake
 `crawfish cloud` because regular crawfish are delightful and they crawl around amongst the buckets - but crawfishcloud crawl in the cloud buckets.
