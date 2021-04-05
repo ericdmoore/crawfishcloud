@@ -86,7 +86,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     - body : `boolean`
     - using : `UsingFunc: (i:S3Item)=><T>`
     - NextContinuationToken? : `string | undefined`
-    - ...filters: string[]
+    - ...filters: `string[]`
 
 -  `returns`
 
@@ -100,8 +100,8 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
   - body : `boolean`
   - using : `UsingFunc: (i:S3Item)=><T>`
-  - ...filters: string[]
-
+  - ...filters: `string[]`
+  
 - `returns`
 
   - Readable
@@ -115,7 +115,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
     - body : `boolean`
     - using : `UsingFunc: (i:S3Item)=><T>`
-    - ...filters: string[]
+    - ...filters: `string[]`
 
 - `returns` 
 
@@ -127,7 +127,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vfileStream()**
 
-> a stream of [vfile](https://github.com/vfile/vfile)
+> a stream of [vfile](https://github.com/vfile/vfile)s
 
 -  `params`
 
@@ -139,7 +139,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vinylStream()**
 
-> a stream of [vinyls](https://github.com/gulpjs/vinyl)
+> a stream of [vinyl](https://github.com/gulpjs/vinyl)s
 
 -  `params`
 
