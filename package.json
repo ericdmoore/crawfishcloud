@@ -2,7 +2,8 @@
   "name": "crawfishcloud",
   "version": "0.1.0",
   "description": "A Streaming S3 Bucket Glob Crawler",
-  "main": "index.js",
+  "main": "build/index.min.js",
+  "types": "src/index.ts",
   "scripts": {
     "test": "jest --coverage",
     "build": "npm run build:esbuild",
