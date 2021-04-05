@@ -8,7 +8,7 @@ import { s3urlToConfigWfilters, s3ConfigToUrl , loadObjectList} from './utils'
 export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:number }, ...filters: string[]):k.CrawfishCloudReturnNoProto {
     const config = {
         filters,
-        body: false, 
+        body: true, 
         MaxKeys: input.maxkeys ?? 1000,
         BucketsPrefixes: filters.map(s3urlToConfigWfilters),
         ...input,

@@ -15,7 +15,7 @@ import crawler, {asVfile} from 'crawfishcloud'
 import {S3, SharedIniFileCredentials} from 'aws-sdk'
 
 const creds = new SharedCredentials({profile: 'default'})
-const crawfish = crawler({s3:new S3({creds})}) // defaults to head
+const crawfish = crawler({s3:new S3({creds})})
 
 ```
 
@@ -30,7 +30,7 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 ### Async Iterator
 
 ```js
-for await (const vf of crawfish({s3c}).iter({body:true, using: asVfile}, 's3://Bucket/path/*.jpg' )){
+for await (const vf of crawfish({s3c}).iter({using: asVfile}, 's3://Bucket/path/*.jpg')){
   console.log({vf})
 }
 ```
@@ -60,6 +60,11 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     1. [vfileArray ( ...filters) : Promise<VFile[]>](#vfileArray)
     1. [vinylArray (...filters) : Promise<Vinyl[]>](#vinylArray)
     1. [s3Array ( ...filters) : Promise<S3Item[]>](#s3Array)
+1. Exporting Functions
+    1. [asVfile (i:S3Item) => Vfile](#asVfile)
+    1. [asVinyl (i:S3Item) => Vinyl](#asVinyl)
+    1. [asS3 (i:S3Item) => S3Item](#asS3)
+
 
 ### crawler()
 
@@ -234,6 +239,40 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 -  `returns`
 
     - Promise<S3Item[]>
+
+
+
+### > *Exporting Functions*
+
+### **asVfile()**
+
+> turn an S3 object into a vfile
+
+- `params`
+    - i : `S3Item`
+
+- `returns`
+    - `Vfile`
+
+### **asVinyl()**
+
+> turn an S3 object into a vinyl
+
+- `params`
+    - i : `S3Item`
+- `returns`
+    - `Vinyl`
+
+### **asS3()**
+
+> Just pass the S3 object structure along
+
+- `params`
+    - i : `S3Item`
+- `returns`
+    - `S3Item`
+
+
 
 #### namesake
 `crawfish cloud` because regular crawfish are delightful and they crawl around amongst the buckets - but crawfishcloud crawl in the cloud buckets.
