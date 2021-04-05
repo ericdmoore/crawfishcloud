@@ -212,6 +212,8 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vfileArray()**
 
+> get an array of `vfiles` all loaded into a variable
+
 -  `params`
 
     - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
@@ -222,6 +224,8 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 ### **vinylArray()**
 
+> get an array of `vinyls` all loaded into a variable
+
 -  `params`
 
     - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
@@ -231,6 +235,8 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     - Promise<Vinyl[]>
 
 ### **s3Array()**
+
+> get an array of `S3Items` all loaded into a variable
 
 -  `params`
 
