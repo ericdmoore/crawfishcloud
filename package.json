@@ -9,9 +9,9 @@
     "build/"
   ],
   "scripts": {
-    "test" : "npm run build; jest --coverage; npm run docs",
+    "test" : "npm run build; jest --coverage",
     "docs" : "typedoc src/index.ts",
-    "np" : "np",
+    "np:prep" : "npm run build; npm run docs",
     "build" : "npm run build:esbuild",
     "build:esbuild" : "esbuild src/index.ts --format=iife --platform=node --minify --bundle > build/index.min.js",
     "build:check" : "esbuild src/index.ts > /dev/null",
