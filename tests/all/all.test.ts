@@ -11,11 +11,20 @@ const s3c = new S3({credentials, region:'us-west-2'})
 const TIMEOUT = 30 * 1000
 
 test('Find JPGs from the network', async ()=>{
-    const ret = await crawler({s3c})
-        .vfileArray('s3://ericdmoore.com-images/*.jpg')
+    const ret = await crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+        .vfileArray()
         .catch(er=> {console.error('test1:',er); return [] as k.VFile[] })
         
     expect(ret.every((vf) => vf.path?.endsWith('.jpg'))).toBe(true)
+},TIMEOUT)
+
+
+test('Find nothing from a bad prefix/path', async ()=>{
+    const ret = await crawler({s3c}, 's3://ericdmoore.com-images/.jpg')
+        .vfileArray()
+        .catch(er=> {console.error('test1:',er); return [] as k.VFile[] })
+        
+    expect(ret).toHaveLength(0)
 },TIMEOUT)
 
 

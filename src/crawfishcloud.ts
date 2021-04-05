@@ -38,10 +38,7 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
             // console.log({objListResp})
             
             const keyList = objListResp.Contents ?? []
-            const keyListFiltered = await Promise.all(
-                keyList
-                .filter(e => isMatch(e.Key ?? '', `${prefix}${suffix}`, {bash:true}))
-            )
+            const keyListFiltered = await Promise.all(keyList.filter(e => isMatch(e.Key ?? '', `${prefix}${suffix}`, {bash:true})))
 
             if(!inp.body){
                 const mappedList = await Promise.all(

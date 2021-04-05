@@ -15,9 +15,7 @@ import crawler, {asVfile} from 'crawfishcloud'
 import {S3, SharedIniFileCredentials} from 'aws-sdk'
 
 const creds = new SharedCredentials({profile: 'default'})
-const s3c = new S3({creds})
-const crawfish = crawler({s3:s3c}) // defaults to head
-const crawfishBodies = crawler.body({s3:s3c},'/prefix/**/*.jpg')
+const crawfish = crawler({s3:new S3({creds})}) // defaults to head
 
 ```
 
