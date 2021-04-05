@@ -38,7 +38,7 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
             // console.log({objListResp})
             
             const keyList = objListResp.Contents ?? []
-            const keyListFiltered = await Promise.all(keyList.filter(e => isMatch(e.Key ?? '', `${prefix}${suffix}`, {bash:true})))
+            const keyListFiltered = await Promise.all(keyList.filter(e => isMatch(e.Key ?? '', `${prefix}${suffix}`, {bash:true })))
 
             if(!inp.body){
                 const mappedList = await Promise.all(
@@ -99,17 +99,18 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
         iter, 
         all, 
         stream,
-        
-        s3Stream: (...filters: string[]) => crawler({...input}).stream({body:true, using: asS3}, ...filters),
-        s3Iter:(...filters: string[])=>crawler({...input}).iter({body:true, using: asS3}, ...filters),
-        s3Array:(...filters: string[])=>crawler({...input}).all({body:true, using: asS3}, ...filters),
 
         vfileStream: ( ...filters: string[]) => crawler(input).stream({body:true, using: asVfile}, ...filters),
         vinylStream: ( ...filters: string[]) => crawler(input).stream({body: true, using: asVinyl}, ...filters),
+        s3Stream: (...filters: string[]) => crawler({...input}).stream({body:true, using: asS3}, ...filters),
+        
         vfileIter: ( ...filters: string[]) => crawler(input).iter({body: true, using: asVfile}, ...filters),
         vinylIter: ( ...filters: string[]) => crawler(input).iter({body: true, using: asVinyl}, ...filters),
+        s3Iter:(...filters: string[])=>crawler({...input}).iter({body:true, using: asS3}, ...filters),
+        
         vfileArray: (...filters: string[]) => crawler(input).all({body:true, using: asVfile}, ...filters),
         vinylArray: ( ...filters: string[]) => crawler(input).all({body:true, using: asVinyl}, ...filters),
+        s3Array:(...filters: string[])=>crawler({...input}).all({body:true, using: asS3}, ...filters),
     }
 }
 
