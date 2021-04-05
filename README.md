@@ -1,5 +1,27 @@
 # crawfishcloud
 
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Contributors][contributors-shield]][contributors-url]
+-->
+
+[![NPM Version][npm-version-shield]][npm-version-url]
+[![Pkg Size][size-shield]][size-url]
+[![Code Coverage][coveralls-sheild]][coveralls-url]
+[![MIT License][license-shield]][license-url]
+
+[![Github Activity][gh-commit-activity-shield]][gh-commit-activity-url]
+[![Issues Closed ][github-issues-closed-shield]][github-issues-closed-url]
+[![Issues][issues-shield]][issues-url]
+
+<!-- [![Built By][ftb-by-devs-shield]][federalies-url] -->
+<!-- [![Winter Is Coming][ftb-winter-shield]][ftb-winter-url] -->
+<!-- [![Built With][ftb-builtWith-shield]][federalies-url] -->
+
 > A Streaming S3 Bucket Glob Crawler
 
 ![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds](https://raw.githubusercontent.com/ericdmoore/crawfishcloud/main/imgs/deepart2.jpg)
@@ -282,3 +304,52 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 #### namesake
 `crawfish cloud` because regular crawfish are delightful and they crawl around amongst the buckets - but crawfishcloud crawl in the cloud buckets.
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[federalies-url]:https://github.com/federalies
+
+[contributors-shield]: https://img.shields.io/github/contributors/federalies/dynamoco?style=for-the-badge
+[contributors-url]: https://github.com/federalies/dynamoco/graphs/contributors
+
+[forks-shield]: https://img.shields.io/github/forks/federalies/dynamoco?style=for-the-badge
+[forks-url]: https://github.com/federalies/dynamoco/network/members
+
+[size-shield]: https://img.shields.io/bundlephobia/minzip/@federalies/dynamoco?style=for-the-badge
+[size-url]: https://bundlephobia.com/result?p=@federalies/dynamoco
+
+[stars-shield]: https://img.shields.io/github/stars/federalies/dynamoco?style=for-the-badge
+[stars-url]: https://github.com/federalies/dynamoco/stargazers
+
+[issues-shield]: https://img.shields.io/github/issues/federalies/dynamoco?style=for-the-badge
+[issues-url]: https://github.com/federalies/dynamoco/issues
+
+[license-shield]: https://img.shields.io/github/license/federalies/dynamoco?style=for-the-badge
+[license-url]: https://github.com/federalies/dynamoco/blob/master/LICENSE
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
+[linkedin-url]: https://linkedin.com/in/eric.moore
+[product-screenshot]: images/screenshot.png
+
+[ftb-winter-shield]: https://forthebadge.com/images/badges/winter-is-coming.svg
+[ftb-winter-url]: https://github.com/federalies/dynamoco/wiki#winter-is-coming
+
+[ftb-builtwith-shield]: https://forthebadge.com/images/badges/built-with-love.svg
+[ftb-by-devs-shield]: https://forthebadge.com/images/badges/built-by-developers.svg
+
+[coveralls-sheild]:https://img.shields.io/coveralls/github/federalies/dynamoco?style=for-the-badge
+[coveralls-url]:https://coveralls.io/github/federalies/dynamoco
+
+[npm-version-url]:https://www.npmjs.com/package/@federalies/dynamoco
+[npm-version-shield]:https://img.shields.io/npm/v/@federalies/dynamoco?style=for-the-badge
+
+[github-action-(build/test)-url]:https://github.com/federalies/dynamoco/actions?query=workflow%3A%22Build+%26+Tests%22
+[github-action-(build/test)-shield]:https://github.com/federalies/dynamoco/workflows/Build%20&%20Tests/badge.svg
+
+[github-issues-closed-url]:https://github.com/federalies/dynamoco/issues?q=is%3Aissue+is%3Aclosed+
+[github-issues-closed-shield]:https://img.shields.io/github/issues-closed-raw/federalies/dynamoco?style=for-the-badge
+
+[gh-commit-activity-url]:https://github.com/federalies/dynamoco/pulse/monthly
+[gh-commit-activity-shield]:https://img.shields.io/github/commit-activity/m/federalies/dynamoco?style=for-the-badge
