@@ -2,7 +2,7 @@
 
 > A Streaming S3 Bucket Glob Crawler
 
-![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds](/imgs/deepart2.jpg)
+![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds](https://raw.githubusercontent.com/ericdmoore/crawfishcloud/main/imgs/deepart2.jpg)
 
 ## Install
 
