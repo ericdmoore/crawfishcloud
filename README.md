@@ -6,7 +6,7 @@
 
 ## Install
 
-`npm i crawfishcloud`
+[`npm i crawfishcloud`](//npm.im/crawfishcloud)
 
 ## Setup
 
