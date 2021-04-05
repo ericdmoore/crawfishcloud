@@ -7,8 +7,9 @@ import * as k from '../../src/types'
 import {Writable} from 'stream'
 
 
-const TIMEOUT = 30 * 1000
-const dest = <T>( name:string, printCond: ()=>boolean = ()=>false, verbose:boolean = false,  ) => { 
+const TIMEOUT = 40 * 1000
+
+const dest = ( name:string, printCond: ()=>boolean = ()=>false, verbose:boolean = false,  ) => { 
     const list = [] as unknown[]
     const getCount = () => list.length
     const setPrintCond = (input:()=>boolean = ()=>false) => {printCond = input}
