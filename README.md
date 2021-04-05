@@ -316,17 +316,17 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 [forks-shield]: https://img.shields.io/github/forks/federalies/dynamoco?style=for-the-badge
 [forks-url]: https://github.com/federalies/dynamoco/network/members
 
-[size-shield]: https://img.shields.io/bundlephobia/minzip/@federalies/dynamoco?style=for-the-badge
-[size-url]: https://bundlephobia.com/result?p=@federalies/dynamoco
+[size-shield]: https://img.shields.io/bundlephobia/minzip/ericdmoore/crawfishcloud?style=for-the-badge
+[size-url]: https://bundlephobia.com/result?p=ericdmoore/crawfishcloud
 
 [stars-shield]: https://img.shields.io/github/stars/federalies/dynamoco?style=for-the-badge
-[stars-url]: https://github.com/federalies/dynamoco/stargazers
+[stars-url]: https://github.com/ericdmoore/crawfishcloud/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/federalies/dynamoco?style=for-the-badge
-[issues-url]: https://github.com/federalies/dynamoco/issues
+[issues-shield]: https://img.shields.io/github/issues/ericdmoore/crawfishcloud?style=for-the-badge
+[issues-url]: https://github.com/ericdmoore/crawfishcloud/issues
 
-[license-shield]: https://img.shields.io/github/license/federalies/dynamoco?style=for-the-badge
-[license-url]: https://github.com/federalies/dynamoco/blob/master/LICENSE
+[license-shield]: https://img.shields.io/github/license/ericdmoore/crawfishcloud?style=for-the-badge
+[license-url]: https://github.com/ericdmoore/crawfishcloud/blob/master/LICENSE
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
@@ -339,17 +339,17 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 [ftb-builtwith-shield]: https://forthebadge.com/images/badges/built-with-love.svg
 [ftb-by-devs-shield]: https://forthebadge.com/images/badges/built-by-developers.svg
 
-[coveralls-sheild]:https://img.shields.io/coveralls/github/federalies/dynamoco?style=for-the-badge
-[coveralls-url]:https://coveralls.io/github/federalies/dynamoco
+[coveralls-sheild]:https://img.shields.io/coveralls/github/ericdmoore/crawfishcloud?style=for-the-badge
+[coveralls-url]:https://coveralls.io/github/ericdmoore/crawfishcloud
 
-[npm-version-url]:https://www.npmjs.com/package/@federalies/dynamoco
-[npm-version-shield]:https://img.shields.io/npm/v/@federalies/dynamoco?style=for-the-badge
+[npm-version-url]:https://www.npmjs.com/package/crawfishcloud
+[npm-version-shield]:https://img.shields.io/npm/v/crawfishcloud?style=for-the-badge
 
-[github-action-(build/test)-url]:https://github.com/federalies/dynamoco/actions?query=workflow%3A%22Build+%26+Tests%22
-[github-action-(build/test)-shield]:https://github.com/federalies/dynamoco/workflows/Build%20&%20Tests/badge.svg
+[github-action-(build/test)-url]:https://github.com/ericdmoore/crawfishcloud/actions?query=workflow%3A%22Build+%26+Tests%22
+[github-action-(build/test)-shield]:https://github.com/ericdmoore/crawfishcloud/workflows/Build%20&%20Tests/badge.svg
 
-[github-issues-closed-url]:https://github.com/federalies/dynamoco/issues?q=is%3Aissue+is%3Aclosed+
-[github-issues-closed-shield]:https://img.shields.io/github/issues-closed-raw/federalies/dynamoco?style=for-the-badge
+[github-issues-closed-url]:https://github.com/ericdmoore/crawfishcloud/issues?q=is%3Aissue+is%3Aclosed+
+[github-issues-closed-shield]:https://img.shields.io/github/issues-closed-raw/ericdmoore/crawfishcloud?style=for-the-badge
 
-[gh-commit-activity-url]:https://github.com/federalies/dynamoco/pulse/monthly
-[gh-commit-activity-shield]:https://img.shields.io/github/commit-activity/m/federalies/dynamoco?style=for-the-badge
+[gh-commit-activity-url]:https://github.com/ericdmoore/crawfishcloud/pulse/monthly
+[gh-commit-activity-shield]:https://img.shields.io/github/commit-activity/m/ericdmoore/crawfishcloud?style=for-the-badge
