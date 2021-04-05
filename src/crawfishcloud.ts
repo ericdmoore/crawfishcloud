@@ -2,7 +2,7 @@ import { Readable } from 'stream'
 import { isMatch } from 'micromatch'
 //
 import type * as k from './types'
-import { asVfile, asVinyl } from './exporters'
+import { asVfile, asVinyl, asS3} from './exporters'
 import { s3urlToConfigWfilters, s3ConfigToUrl , loadObjectList} from './utils'
 
 export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:number }, ...filters: string[]):k.CrawfishCloudReturnNoProto {
@@ -28,14 +28,14 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
 
         // uses for loop to not add function scope to the asyncGenerator
         // start at back and run down
+        // console.log({bucketPrefixes})
+
         for( let j = bucketPrefixes.length-1; j >= 0; j-- ){
             const {Bucket, Key, prefix, suffix} = bucketPrefixes[j]
+            // console.log({Bucket, Key, prefix, suffix})
             
             const objListResp = await s3c.listObjectsV2({Bucket, MaxKeys, Prefix: prefix, ContinuationToken: inp.NextContinuationToken}).promise()
-                .catch(er => {
-                    console.error(er)
-                    return Promise.resolve([]) as Promise<k.S3.ListObjectsV2Output>
-                })
+            // console.log({objListResp})
             
             const keyList = objListResp.Contents ?? []
             const keyListFiltered = await Promise.all(
@@ -44,16 +44,16 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
             )
 
             if(!inp.body){
-                const list = await Promise.all(
+                const mappedList = await Promise.all(
                     keyListFiltered.map( (v,k) => inp.using( { ...v, Body:'' },k) as unknown as Promise<T> )
                 )
-                yield* list
+                yield* mappedList
 
                 if(objListResp.NextContinuationToken){
                     yield* iter({
                             body: inp.body, 
-                            using:inp.using, 
-                            NextContinuationToken:objListResp.NextContinuationToken
+                            using: inp.using, 
+                            NextContinuationToken: objListResp.NextContinuationToken
                         },
                         s3ConfigToUrl({Bucket, Key}))
                 }
@@ -92,38 +92,39 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
      */
     const all = async <T>(i:{body:boolean, using: k.UsingFunc<T>}, ...filters:string[]): Promise<T[]>=>{
         const acc = [] as T[]
-        return new Promise((resolve, reject)=>{
-            stream(i, ...filters)
-            .on('data', (chunk) => acc.push(chunk) )
-            .on('close', () => resolve(acc as T[]))
-            .on('error', (er) => reject(er))
-        })
+        for await (const f of iter(i, ...filters)){
+            acc.push(f)
+        }
+        return acc
     }
     
     return { 
         iter, 
         all, 
         stream,
-        body: <T>(input:{ using :k.UsingFunc<T>, maxkeys?:number }, ...filters: string[]) => crawler({...input , s3c : config.s3c, body:true},...filters),
-        head: <T>(input:{ using :k.UsingFunc<T>, maxkeys?:number }, ...filters: string[]) => crawler({...input, s3c: config.s3c, body:false},...filters),
-        vfileStream: ( ...filters: string[]) => crawler({...input, s3c: config.s3c}).stream({body:true, using: asVfile}, ...filters),
-        vinylStream: ( ...filters: string[]) => crawler({...input, s3c: config.s3c}).stream({body: true, using: asVinyl}, ...filters),
-        vfileIter: ( ...filters: string[]) => crawler({...input, s3c: config.s3c}).iter({body: true, using: asVfile}, ...filters),
-        vinylIter: ( ...filters: string[]) => crawler({...input, s3c: config.s3c }).iter({body: true, using: asVinyl}, ...filters),
-        vfileArray: (...filters: string[]) => crawler({...input, s3c: config.s3c }).all({body:true, using: asVfile}, ...filters),
-        vinylArray: ( ...filters: string[]) => crawler({...input, s3c: config.s3c }).all({body:true, using: asVinyl}, ...filters),
+        
+        s3Stream: (...filters: string[]) => crawler({...input}).stream({body:true, using: asS3}, ...filters),
+        s3Iter:(...filters: string[])=>crawler({...input}).iter({body:true, using: asS3}, ...filters),
+        s3Array:(...filters: string[])=>crawler({...input}).all({body:true, using: asS3}, ...filters),
+
+        vfileStream: ( ...filters: string[]) => crawler(input).stream({body:true, using: asVfile}, ...filters),
+        vinylStream: ( ...filters: string[]) => crawler(input).stream({body: true, using: asVinyl}, ...filters),
+        vfileIter: ( ...filters: string[]) => crawler(input).iter({body: true, using: asVfile}, ...filters),
+        vinylIter: ( ...filters: string[]) => crawler(input).iter({body: true, using: asVinyl}, ...filters),
+        vfileArray: (...filters: string[]) => crawler(input).all({body:true, using: asVfile}, ...filters),
+        vinylArray: ( ...filters: string[]) => crawler(input).all({body:true, using: asVinyl}, ...filters),
     }
 }
 
 // crawler.prototype.body = <T>(input:{s3c: k.S3, using :k.UsingFunc<T>, maxkeys?:number }, ...filters: string[]) => crawler({...input, body:true},...filters)
 // crawler.prototype.head = <T>(input:{s3c: k.S3, using :k.UsingFunc<T>, maxkeys?:number }, ...filters: string[]) => crawler({...input, body:false},...filters)
-
+//
 // crawler.prototype.vfileStream = (input:{s3c: k.S3, maxkeys?:number }, ...filters: string[]) => crawler({...input}).stream({body:true, using: asVfile}, ...filters)
 // crawler.prototype.vinylStream = (input:{s3c: k.S3, maxkeys?:number }, ...filters: string[]) => crawler({...input}).stream({body: true, using: asVinyl}, ...filters)
-
+//
 // crawler.prototype.vfileIter = (input:{s3c: k.S3, maxkeys?:number }, ...filters: string[]) => crawler({...input }).iter({body: true, using: asVfile}, ...filters)
 // crawler.prototype.vinylIter = (input:{s3c: k.S3, maxkeys?:number }, ...filters: string[]) => crawler({...input }).iter({body: true, using: asVinyl}, ...filters)
-
+//
 // crawler.prototype.vfileArray = (input:{s3c: k.S3, maxkeys?:number }, ...filters: string[]) => crawler({...input }).all({body:true, using: asVfile}, ...filters)
 // crawler.prototype.vinylArray = (input:{s3c: k.S3, maxkeys?:number }, ...filters: string[]) => crawler({...input }).all({body:true, using: asVinyl}, ...filters)
 

@@ -18,7 +18,7 @@ export const s3urlToConfig = (s3url: string) => {
         );
     return {
         Bucket: s3Cfg.hostname,
-        Key: s3Cfg.pathname,
+        Key: s3Cfg.pathname.slice(1),
         ...qs
     };
 };

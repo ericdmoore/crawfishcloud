@@ -39,16 +39,19 @@ export interface CrawfishCloudReturnNoProto{
     iter<T>(inp:{body:boolean, using:UsingFunc<T>, NextContinuationToken?: string}, ...filters: string[]) : AsyncGenerator<T, void, undefined>
     stream<T>(inp:{body:boolean, using:UsingFunc<T>}, ...filters: string[]) : Readable
     all<T>(inp:{body:boolean, using:UsingFunc<T>}, ...filters: string[]) : Promise<T[]>
-    
-    head<T>(input:{ using: UsingFunc<T>, maxkeys?:number }, ...filters: string[]) : CrawfishCloudReturnNoProto
-    body<T>(input:{using: UsingFunc<T>, maxkeys?:number }, ...filters: string[]) : CrawfishCloudReturnNoProto
 
     vfileStream( ...filters: string[]) : Readable
     vinylStream(...filters: string[]) : Readable
+    s3Stream(...filters: string[]) : Readable
+
     vfileIter( ...filters: string[]): AsyncGenerator<VFile, void, undefined>
     vinylIter(...filters: string[]): AsyncGenerator<Vinyl, void, undefined>
+    s3Iter(...filters: string[]): AsyncGenerator<S3Item,void, undefined>
+
     vfileArray( ...filters: string[]): Promise<VFile[]>
     vinylArray(...filters: string[]): Promise<Vinyl[]>
+    s3Array( ...filters: string[]): Promise<S3Item[]>
+    
 }
 
 

@@ -14,7 +14,7 @@ const drainReadable = (init:string , r: Readable, tail:string):Promise<string>=>
     })
 }
 
-export const awsS3 = async (o: k.S3Item, i:number):Promise<k.S3Item> => o 
+export const asS3 = async (o: k.S3Item, i:number):Promise<k.S3Item> => o 
 
 export const asVfile = async (o:k.S3Item, i:number ): Promise<vfile.VFile> =>{
     

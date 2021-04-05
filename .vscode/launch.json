@@ -1,0 +1,22 @@
+{
+    "configurations": [
+    {
+        "name": "Attach",
+        "type": "pwa-node",
+        "request": "attach",
+        "port": 9229,
+        "skipFiles": ["<node_internals>/**"],
+        
+    },
+    {
+        "name": "Current TS File",
+        "type": "node",
+        "request": "launch",
+        "args": ["${relativeFile}"],
+        "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+        "sourceMaps": true,
+        "cwd": "${workspaceRoot}",
+        "protocol": "inspector",
+    }
+    ]
+}

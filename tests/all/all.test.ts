@@ -1,36 +1,36 @@
-import type {ITestResults , ITestFunc} from '../types'
+/* globals test, expect */
+
+import * as k from '../../src/types'
 //
-import {runTests, compareInit, skipInit} from '../index.test'
 import crawler from "../../src/index"
-import s3c from '../aws'
 
-const t = compareInit(__filename)
-// const skip = skipInit(__filename)
+import {S3, SharedIniFileCredentials} from 'aws-sdk'
+const credentials = new SharedIniFileCredentials({profile:'personal_default'})
+const s3c = new S3({credentials, region:'us-west-2'})
 
-export const test:ITestFunc = async (prior, i)=> {
-    console.log(__filename)
-    const tests: ITestFunc[] =[
-        async (p, i) => {
-            const ret = await crawler({s3c}).vfileArray('s3://ericdmoore.com-images/*.jpg')
-            return t(i,p, 'Find JPGs from the network',
-                ret.every((vf) => vf.path?.endsWith('.jpg')),
-                true
-            )
-        },
-        async (p, i) => {
-            const ret = await crawler({s3c}).vfileArray('s3://ericdmoore.com-images/*.png')
-            return t(i,p, 'Find PNGs from the network',
-                ret.every((vf) => vf.path?.endsWith('.png')),
-                true
-            )
-        },
-        async (p, i) => {
-            const ret = await crawler({s3c}).vinylArray('s3://ericdmoore.com-images/*.svg')
-            return t(i,p, 'Find SVGs from the network',
-                ret.every((v) => v.path.endsWith('.svg')),
-                true
-            )
-        }
-    ]
-    return runTests(prior, ...tests) 
-}
+const TIMEOUT = 30 * 1000
+
+test('Find JPGs from the network', async ()=>{
+    const ret = await crawler({s3c})
+        .vfileArray('s3://ericdmoore.com-images/*.jpg')
+        .catch(er=> {console.error('test1:',er); return [] as k.VFile[] })
+        
+    expect(ret.every((vf) => vf.path?.endsWith('.jpg'))).toBe(true)
+},TIMEOUT)
+
+
+test('Find PNGs from the network', async ()=>{
+    const ret = await crawler({s3c})
+        .s3Array('s3://ericdmoore.com-images/*.png')
+        .catch(er=> {console.error('test2:',er); return [] as k.S3Item[] })
+
+    expect(ret.every((s3o) => s3o.Key?.endsWith('.png'))).toBe(true)
+},TIMEOUT)
+
+test('Find SVGs from the network', async () =>{
+    const ret = await crawler({s3c})
+        .vinylArray('s3://ericdmoore.com-images/*.svg')
+        .catch(er=> {console.error('allSVGs:',er); return [] as k.Vinyl[] })
+
+    expect(ret.every((v) => v.path.endsWith('.svg'))).toBe(true)       
+},TIMEOUT)

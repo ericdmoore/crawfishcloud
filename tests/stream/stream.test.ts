@@ -1,54 +1,82 @@
-import type {ITestResults , ITestFunc} from '../types'
-//
+import crawler from "../../src/index"
+import {S3, SharedIniFileCredentials} from 'aws-sdk'
+const credentials = new SharedIniFileCredentials({profile:'personal_default'})
+const s3c = new S3({credentials, region:'us-west-2'})
+
+import * as k from '../../src/types'
 import {Writable} from 'stream'
-import {runTests, compareInit, skipInit} from '../index.test'
-import crawler, {asVfile}  from "../../src/index"
 
-import s3c from '../aws'
-const t = compareInit(__filename)
-// const skip = skipInit(__filename)
 
-let writeCount = 0
-const dest = ( name:string ) => {return new Writable({
-    objectMode:true,
-    write: function(chunk, enc, cb){ 
-        writeCount++
-        if(writeCount % 5 ===0 ) console.log(name, writeCount, {chunk})
-        cb()
-    },
-    final: function(cb){
-        console.log(name, {writeCount})
-        cb()
+const TIMEOUT = 30 * 1000
+const dest = <T>( name:string, printCond: ()=>boolean = ()=>false, verbose:boolean = false,  ) => { 
+    const list = [] as unknown[]
+    const getCount = () => list.length
+    const setPrintCond = (input:()=>boolean = ()=>false) => {printCond = input}
+    const getEntries = () => Object.freeze(list)
+    return {
+        getCount,
+        getEntries,
+        setPrintCond,
+        writeStream:  new Writable({
+            objectMode:true,
+            write: function(chunk, enc, cb){ 
+                list.push(chunk)
+                if( printCond() ) console.log(name, {count: getCount(), chunk})
+                cb()
+            },
+            final: function(cb){
+                if(verbose) console.log(name, {count: getCount()})
+                cb()
+            }
+        })
     }
-})}
-
-export const test:ITestFunc = async (prior, i)=> {
-    console.log(__filename)
-    const tests: ITestFunc[] =[
-        async (p, i) => {
-            return new Promise((resolve, reject)=>{
-                crawler({s3c}).vfileStream('s3://ericdmoore.com-images/a*.jpg')
-                  .pipe(dest('a* JPGS'))
-                  .on('close',()=>resolve(t(i,p, 'Find a*.jpg from the network', true, true)))
-                  .on('error',(er)=>reject(er))
-            })
-        },
-        async (p, i) => {
-            return new Promise((resolve, reject)=>{
-                crawler({s3c}).vfileStream('s3://ericdmoore.com-images/*.png')
-                  .pipe(dest('all PNGs'))
-                  .on('close',()=>resolve(t(i,p, 'Find PNGs from the network', true, true)))
-                  .on('error',(er)=>reject(er))
-            })
-        },
-        async (p, i) => {
-            return new Promise((resolve, reject)=>{
-                crawler({s3c}).vinylStream('s3://ericdmoore.com-images/*.svg')
-                  .pipe(dest('all SVGs'))
-                  .on('close',()=>resolve(t(i,p, 'Find PNGs from the network', true, true)))
-                  .on('error',(er)=>reject(er))
-            })
-        },
-    ]
-    return runTests(prior, ...tests) 
 }
+
+
+/**
+ * check values with 
+ * @bash aws s3 ls 's3://ericdmoore.com-images/a' --profile='personal_default' | grep 'a*.jpg' | wc -l
+ */
+test('Find a*.jpg from the network', async () => {
+    const d = dest('A star JPGs', ()=>false, false)
+    // d.setPrintCond( () => d.getCount() %5 ===0 )
+    
+    await new Promise((resolve, reject)=>{
+        crawler({s3c}).vfileStream('s3://ericdmoore.com-images/a*.jpg')
+            .pipe(d.writeStream)
+            .on('finish', resolve)
+            .on('error', reject)
+    })
+    
+    expect(d.getCount()).toBe(26)
+    expect(d.getEntries().every(vf => (vf as k.VFile).path?.endsWith('.jpg'))).toBe(true)
+},TIMEOUT)
+
+
+test('Find *.png from the network', async () => {
+    const d = dest('Star PNGs', ()=>false, false)
+    await new Promise((resolve, reject)=>{
+        crawler({s3c}).s3Stream('s3://ericdmoore.com-images/*.png')
+        .pipe(d.writeStream)
+        .on('finish', resolve)
+        .on('error', reject)
+    })
+    
+    expect(d.getCount()).toBe(19)
+    expect(d.getEntries().every((vf) => (vf as k.S3Item).Key?.endsWith('.png'))).toBe(true)
+}, TIMEOUT )
+  
+
+test('Find *.svg from the network', async () => {
+    const d = dest('Star SVGs', ()=>false, false)
+    await new Promise((resolve, reject)=>{
+        crawler({s3c}).vinylStream('s3://ericdmoore.com-images/*.svg')
+        .pipe(d.writeStream)
+        .on('finish', resolve)
+        .on('error', reject)
+    })
+    
+    expect(d.getCount()).toBe(3)
+    expect(d.getEntries().every(vf => (vf as k.Vinyl).path?.endsWith('.svg'))).toBe(true)
+
+}, TIMEOUT )
