@@ -308,18 +308,17 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[federalies-url]:https://github.com/federalies
 
-[contributors-shield]: https://img.shields.io/github/contributors/federalies/dynamoco?style=for-the-badge
-[contributors-url]: https://github.com/federalies/dynamoco/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/ericdmooreccrawfishcloud?style=for-the-badge
+[contributors-url]: https://github.com/ericdmoore/crawfishcloud/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/federalies/dynamoco?style=for-the-badge
-[forks-url]: https://github.com/federalies/dynamoco/network/members
+[forks-shield]: https://img.shields.io/github/forks/ericdmoore/crawfishcloud?style=for-the-badge
+[forks-url]: https://github.com/ericdmoore/crawfishcloud/network/members
 
-[size-shield]: https://img.shields.io/bundlephobia/minzip/ericdmoore/crawfishcloud?style=for-the-badge
-[size-url]: https://bundlephobia.com/result?p=ericdmoore/crawfishcloud
+[size-shield]: https://img.shields.io/bundlephobia/minzip/crawfishcloud?style=for-the-badge
+[size-url]: https://bundlephobia.com/result?p=crawfishcloud
 
-[stars-shield]: https://img.shields.io/github/stars/federalies/dynamoco?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/ericdmoore/crawfishcloud?style=for-the-badge
 [stars-url]: https://github.com/ericdmoore/crawfishcloud/stargazers
 
 [issues-shield]: https://img.shields.io/github/issues/ericdmoore/crawfishcloud?style=for-the-badge
