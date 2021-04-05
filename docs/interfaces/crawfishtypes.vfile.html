@@ -1,0 +1,648 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VFile | crawfishcloud</title>
+	<meta name="description" content="Documentation for crawfishcloud">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">crawfishcloud</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">crawfishcloud</a>
+				</li>
+				<li>
+					<a href="../modules/crawfishtypes.html">crawfishTypes</a>
+				</li>
+				<li>
+					<a href="crawfishtypes.vfile.html">VFile</a>
+				</li>
+			</ul>
+			<h1>Interface VFile</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">VFile</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3 class="tsd-before-signature">Callable</h3>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">VFile&lt;F&gt;<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">VFileContents</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">VFileOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">F</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in node_modules/vfile/types/index.d.ts:51</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Create a new virtual file. If <code>options</code> is <code>string</code> or <code>Buffer</code>, treats it as <code>{contents: options}</code>.
+								If <code>options</code> is a <code>VFile</code>, returns it. All other options are set on the newly created <code>vfile</code>.</p>
+							</div>
+							<p>Path related properties are set in the following order (least specific to most specific): <code>history</code>, <code>path</code>, <code>basename</code>, <code>stem</code>, <code>extname</code>, <code>dirname</code>.</p>
+							<p>It’s not possible to set either <code>dirname</code> or <code>extname</code> without setting either <code>history</code>, <code>path</code>, <code>basename</code>, or <code>stem</code> as well.</p>
+						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>F<span class="tsd-signature-symbol">: </span><a href="crawfishtypes.vfile.html" class="tsd-signature-type" data-tsd-kind="Interface">VFile</a></h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> input: <span class="tsd-signature-type">F</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">VFileContents</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">VFileOptions</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">F</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter tsd-is-external">
+				<h3 class="tsd-before-signature">Indexable</h3>
+				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">unknown</span></div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#basename" class="tsd-kind-icon">basename</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#contents" class="tsd-kind-icon">contents</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#cwd" class="tsd-kind-icon">cwd</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#dirname" class="tsd-kind-icon">dirname</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#extname" class="tsd-kind-icon">extname</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#fail" class="tsd-kind-icon">fail</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#history" class="tsd-kind-icon">history</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#info" class="tsd-kind-icon">info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#messages" class="tsd-kind-icon">messages</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#path" class="tsd-kind-icon">path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#stem" class="tsd-kind-icon">stem</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="crawfishtypes.vfile.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="basename" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> basename</h3>
+					<div class="tsd-signature tsd-kind-icon">basename<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:95</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Current name (including extension) of <code>vfile</code>.
+								Cannot contain path separators.
+							Cannot be nullified either (use <code>file.path = file.dirname</code> instead).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="contents" class="tsd-anchor"></a>
+					<h3>contents</h3>
+					<div class="tsd-signature tsd-kind-icon">contents<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">VFileContents</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:79</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Raw value.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="cwd" class="tsd-anchor"></a>
+					<h3>cwd</h3>
+					<div class="tsd-signature tsd-kind-icon">cwd<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:110</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Base of <code>path</code>.
+							Defaults to <code>process.cwd()</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:71</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Place to store custom information.
+							It&#39;s OK to store custom data directly on the <code>vfile</code>, moving it to <code>data</code> gives a little more privacy.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="dirname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> dirname</h3>
+					<div class="tsd-signature tsd-kind-icon">dirname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:89</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Path to parent directory of <code>vfile</code>.
+							Cannot be set if there&#39;s no <code>path</code> yet.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="extname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> extname</h3>
+					<div class="tsd-signature tsd-kind-icon">extname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:105</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Extension (with dot) of <code>vfile</code>.
+							Cannot be set if there&#39;s no <code>path</code> yet and cannot contain path separators.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="fail" class="tsd-anchor"></a>
+					<h3>fail</h3>
+					<div class="tsd-signature tsd-kind-icon">fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span>, ruleId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">never</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:137</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Associates a fatal message with the file, then immediately throws it.
+								Note: fatal errors mean a file is no longer processable.
+							Calls <code>message()</code> internally.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Reason for message. Uses the stack and message of the error if given.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Place at which the message occurred in <code>vfile</code>.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Category of message.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-interface tsd-is-external">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span>, ruleId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">never</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>reason: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> position: <span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> ruleId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">never</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="history" class="tsd-anchor"></a>
+					<h3>history</h3>
+					<div class="tsd-signature tsd-kind-icon">history<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:66</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>List of file-paths the file moved between.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="info" class="tsd-anchor"></a>
+					<h3>info</h3>
+					<div class="tsd-signature tsd-kind-icon">info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span>, ruleId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">VFileMessage</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:149</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Associates an informational message with the file, where <code>fatal</code> is set to <code>null</code>.
+							Calls <code>message()</code> internally.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Reason for message. Uses the stack and message of the error if given.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Place at which the message occurred in <code>vfile</code>.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Category of message.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-interface tsd-is-external">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span>, ruleId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">VFileMessage</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>reason: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> position: <span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> ruleId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">VFileMessage</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span>, ruleId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">VFileMessage</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:124</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Associates a message with the file for <code>reason</code> at <code>position</code>.
+								When an error is passed in as <code>reason</code>, copies the stack.
+							Each message has a <code>fatal</code> property which by default is set to <code>false</code> (ie. <code>warning</code>).</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Reason for message. Uses the stack and message of the error if given.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Place at which the message occurred in <code>vfile</code>.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Category of message.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-interface tsd-is-external">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>reason<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span>, ruleId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">VFileMessage</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>reason: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> position: <span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Node</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> ruleId: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">VFileMessage</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="messages" class="tsd-anchor"></a>
+					<h3>messages</h3>
+					<div class="tsd-signature tsd-kind-icon">messages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">VFileMessage</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:75</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>List of messages associated with the file.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="path" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> path</h3>
+					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:84</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Path of <code>vfile</code>.
+							Cannot be nullified.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="stem" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> stem</h3>
+					<div class="tsd-signature tsd-kind-icon">stem<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:100</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Name (without extension) of <code>vfile</code>.
+							Cannot be nullified, and cannot contain path separators.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<div class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">BufferEncoding</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/vfile/types/index.d.ts:115</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Convert contents of <code>vfile</code> to string.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>If <code>contents</code> is a buffer, <code>encoding</code> is used to stringify buffers (default: <code>&#39;utf8&#39;</code>).</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-interface tsd-is-external">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">BufferEncoding</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> encoding: <span class="tsd-signature-type">BufferEncoding</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
+					<li class="current tsd-kind-namespace">
+						<a href="../modules/crawfishtypes.html">crawfish<wbr>Types</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="../modules/crawfishtypes.s3.html">crawfish<wbr>Types.<wbr>S3</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="../modules/crawfishtypes.s3.managedupload.html">crawfish<wbr>Types.<wbr>S3.<wbr>Managed<wbr>Upload</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="../modules/crawfishtypes.s3.presignedpost.html">crawfish<wbr>Types.<wbr>S3.<wbr>Presigned<wbr>Post</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-namespace tsd-is-external">
+						<a href="../classes/crawfishtypes.s3-1.html" class="tsd-kind-icon">S3</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="crawfishtypes.crawfishcloud.html" class="tsd-kind-icon">Crawfish<wbr>Cloud</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="crawfishtypes.crawfishcloudreturnnoproto.html" class="tsd-kind-icon">Crawfish<wbr>Cloud<wbr>Return<wbr>NoProto</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="crawfishtypes.crawfishcloudreturnwproto.html" class="tsd-kind-icon">Crawfish<wbr>Cloud<wbr>ReturnWProto</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="crawfishtypes.crawfishcloudwproto.html" class="tsd-kind-icon">Crawfish<wbr>Cloudw<wbr>Proto</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="crawfishtypes.s3bucketprefix.html" class="tsd-kind-icon">S3<wbr>Bucket<wbr>Prefix</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="crawfishtypes.s3config.html" class="tsd-kind-icon">S3<wbr>Config</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter tsd-is-external">
+						<a href="crawfishtypes.vfile.html" class="tsd-kind-icon">VFile</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#basename" class="tsd-kind-icon">basename</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#contents" class="tsd-kind-icon">contents</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#cwd" class="tsd-kind-icon">cwd</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#data" class="tsd-kind-icon">data</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#dirname" class="tsd-kind-icon">dirname</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#extname" class="tsd-kind-icon">extname</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#fail" class="tsd-kind-icon">fail</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#history" class="tsd-kind-icon">history</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#info" class="tsd-kind-icon">info</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#messages" class="tsd-kind-icon">messages</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#path" class="tsd-kind-icon">path</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#stem" class="tsd-kind-icon">stem</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="crawfishtypes.vfile.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="../modules/crawfishtypes.html#dict" class="tsd-kind-icon">Dict</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
+						<a href="../modules/crawfishtypes.html#fulls3object" class="tsd-kind-icon">Full<wbr>S3Object</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
+						<a href="../modules/crawfishtypes.html#s3item" class="tsd-kind-icon">S3<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
+						<a href="../modules/crawfishtypes.html#s3nodebody" class="tsd-kind-icon">S3<wbr>Node<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="../modules/crawfishtypes.html#usingfunc" class="tsd-kind-icon">Using<wbr>Func</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
+						<a href="../modules/crawfishtypes.html#vinyl" class="tsd-kind-icon">Vinyl</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

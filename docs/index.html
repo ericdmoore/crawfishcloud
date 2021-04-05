@@ -1,0 +1,514 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>crawfishcloud</title>
+	<meta name="description" content="Documentation for crawfishcloud">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">crawfishcloud</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>crawfishcloud</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#crawfishcloud" id="crawfishcloud" style="color: inherit; text-decoration: none;">
+					<h1>crawfishcloud</h1>
+				</a>
+				<blockquote>
+					<p>A Streaming S3 Bucket Glob Crawler</p>
+				</blockquote>
+				<p><img src="/imgs/deepart2.jpg" alt="Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds"></p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<p><code>npm i crawfishcloud</code></p>
+				<a href="#setup" id="setup" style="color: inherit; text-decoration: none;">
+					<h2>Setup</h2>
+				</a>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">creds</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crawfish</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3:</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">creds</span><span style="color: #000000">})})</span>
+
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#streamlt-vfile--vinyl-gt" id="streamlt-vfile--vinyl-gt" style="color: inherit; text-decoration: none;">
+					<h3>Stream&lt; Vfile | Vinyl &gt;</h3>
+				</a>
+				<pre><code class="language-js"><span style="color: #795E26">crawfish</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">vfileStream</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/prefix/**/*.jpg&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">destination</span><span style="color: #000000">())</span>
+</code></pre>
+				<a href="#async-iterator" id="async-iterator" style="color: inherit; text-decoration: none;">
+					<h3>Async Iterator</h3>
+				</a>
+				<pre><code class="language-js"><span style="color: #AF00DB">for</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> (</span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">vf</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #795E26">crawfish</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">iter</span><span style="color: #000000">({</span><span style="color: #001080">using:</span><span style="color: #000000"> </span><span style="color: #001080">asVfile</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://Bucket/path/*.jpg&#039;</span><span style="color: #000000">)){</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">({</span><span style="color: #001080">vf</span><span style="color: #000000">})</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#promiseltarrrayltvfile--vinylgtgt" id="promiseltarrrayltvfile--vinylgtgt" style="color: inherit; text-decoration: none;">
+					<h3>Promise&lt;Arrray&lt;Vfile | Vinyl&gt;&gt;</h3>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">allJpgs</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">crawfish</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">vinylArray</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://Bucket/path/*.jpg&#039;</span><span style="color: #000000">)</span>
+</code></pre>
+				<a href="#api-reference" id="api-reference" style="color: inherit; text-decoration: none;">
+					<h2>API Reference</h2>
+				</a>
+				<ol>
+					<li><a href="#crawler">crawler (s3c, body, maxkeys, ...filters) : crawfishcloud</a></li>
+					<li>Base Functions<ol>
+							<li><a href="#iter">iter (i:{body, using, NextContinuationToken}, ...filters) : AsyncGenerator</a></li>
+							<li><a href="#stream">stream (i:{body, using}, ...filters) : Readable</a></li>
+							<li><a href="#all">all (i:{body, using}, ...filters) : Promise&lt;T[]&gt;</a></li>
+						</ol>
+					</li>
+					<li>Readable Node Stream Family<ol>
+							<li><a href="#vfileStream">vfileStream ( ...filters) : Readable</a></li>
+							<li><a href="#vinylStream">vinylStream (...filters) : Readable</a></li>
+							<li><a href="#s3Stream">s3Stream (...filters) : Readable</a></li>
+						</ol>
+					</li>
+					<li>AsynGenerator Family<ol>
+							<li><a href="#vfileIter">vfileIter ( ...filters) : AsyncGenerator</a></li>
+							<li><a href="#vinylIter">vinylIter (...filters) : AsyncGenerator</a></li>
+							<li><a href="#s3Iter">s3Iter (...filters) : AsyncGenerator</a></li>
+						</ol>
+					</li>
+					<li>Array Family<ol>
+							<li><a href="#vfileArray">vfileArray ( ...filters) : Promise&lt;VFile[]&gt;</a></li>
+							<li><a href="#vinylArray">vinylArray (...filters) : Promise&lt;Vinyl[]&gt;</a></li>
+							<li><a href="#s3Array">s3Array ( ...filters) : Promise&lt;S3Item[]&gt;</a></li>
+						</ol>
+					</li>
+					<li>Exporting Functions<ol>
+							<li><a href="#asVfile">asVfile (i:S3Item) =&gt; Vfile</a></li>
+							<li><a href="#asVinyl">asVinyl (i:S3Item) =&gt; Vinyl</a></li>
+							<li><a href="#asS3">asS3 (i:S3Item) =&gt; S3Item</a></li>
+						</ol>
+					</li>
+				</ol>
+				<a href="#crawler" id="crawler" style="color: inherit; text-decoration: none;">
+					<h3>crawler()</h3>
+				</a>
+				<blockquote>
+					<p><code>function</code> default export &quot;aka: crawler&quot;</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>s3c: : <code>S3</code></li>
+							<li>body: : <code>boolean</code></li>
+							<li>maxkeys: : <code>number</code></li>
+							<li>...filters: <code>string[]</code></li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>crawfishcloud</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#gt-base-returns" id="gt-base-returns" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>Base Returns</em></h3>
+				</a>
+				<a href="#iter" id="iter" style="color: inherit; text-decoration: none;">
+					<h3><strong>iter()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get an <code>AsyncGenerator&lt;T&gt;</code> ready to use with a <code>for await (){}</code> loop where each elemement is of Type<T> based on the Using Function</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>body : <code>boolean</code></li>
+							<li>using : <code>UsingFunc: (i:S3Item)=&gt;&lt;T&gt;</code></li>
+							<li>NextContinuationToken? : <code>string | undefined</code></li>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li>AsyncGenerator with elements of type<T> where <code>T</code> is the </li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#stream" id="stream" style="color: inherit; text-decoration: none;">
+					<h3><strong>stream()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get a Readable Node Stream ready to pipe to a transform or writable stream</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>body : <code>boolean</code></li>
+							<li>using : <code>UsingFunc: (i:S3Item)=&gt;&lt;T&gt;</code></li>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li>Readable</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#all" id="all" style="color: inherit; text-decoration: none;">
+					<h3><strong>all()</strong></h3>
+				</a>
+				<blockquote>
+					<p>load all of the s3 url into an array. Where the array is resolved when all of the elements are populated to the array.</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>body : <code>boolean</code></li>
+							<li>using : <code>UsingFunc: (i:S3Item)=&gt;&lt;T&gt;</code></li>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code> </p>
+						<ul>
+							<li><code>Promise&lt;T[]&gt;</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#gt-stream-returns" id="gt-stream-returns" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>Stream Returns</em></h3>
+				</a>
+				<a href="#vfilestream" id="vfilestream" style="color: inherit; text-decoration: none;">
+					<h3><strong>vfileStream()</strong></h3>
+				</a>
+				<blockquote>
+					<p>a stream of <a href="https://github.com/vfile/vfile">vfile</a>s</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>Readable</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#vinylstream" id="vinylstream" style="color: inherit; text-decoration: none;">
+					<h3><strong>vinylStream()</strong></h3>
+				</a>
+				<blockquote>
+					<p>a stream of <a href="https://github.com/gulpjs/vinyl">vinyl</a>s</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>Readable</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#s3stream" id="s3stream" style="color: inherit; text-decoration: none;">
+					<h3><strong>s3Stream()</strong></h3>
+				</a>
+				<blockquote>
+					<p>a stream of S3 Items where S3 list object keys are mixed in with the the getObject keys - called an <code>S3Item</code></p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>Readable</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#gt-asyncgenerator-returns" id="gt-asyncgenerator-returns" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>AsyncGenerator Returns</em></h3>
+				</a>
+				<a href="#vfileiter" id="vfileiter" style="color: inherit; text-decoration: none;">
+					<h3><strong>vfileIter()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get an AyncGenerator thats is ready to run through a set of <code>VFiles</code></p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>AsyncGenerator&lt;VFile, void, undefined&gt;</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#vinyliter" id="vinyliter" style="color: inherit; text-decoration: none;">
+					<h3><strong>vinylIter()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get an AyncGenerator thats is ready to run through a set of <code>Vinyls</code></p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>AsyncGenerator&lt;Vinyl, void, undefined&gt;</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#s3iter" id="s3iter" style="color: inherit; text-decoration: none;">
+					<h3><strong>s3Iter()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get an AyncGenerator thats is ready to run through a set of <code>S3Item</code></p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>AsyncGenerator&lt;S3Item, void, undefined&gt;</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#gt-array-returns-promiselttgt" id="gt-array-returns-promiselttgt" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>Array Returns Promise&lt;T[]&gt;</em></h3>
+				</a>
+				<a href="#vfilearray" id="vfilearray" style="color: inherit; text-decoration: none;">
+					<h3><strong>vfileArray()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get an array of <code>vfiles</code> all loaded into a variable</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li>Promise&lt;Vfile[]&gt;</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#vinylarray" id="vinylarray" style="color: inherit; text-decoration: none;">
+					<h3><strong>vinylArray()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get an array of <code>vinyls</code> all loaded into a variable</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li>Promise&lt;Vinyl[]&gt;</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#s3array" id="s3array" style="color: inherit; text-decoration: none;">
+					<h3><strong>s3Array()</strong></h3>
+				</a>
+				<blockquote>
+					<p>get an array of <code>S3Items</code> all loaded into a variable</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li>Promise&lt;S3Item[]&gt;</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#gt-exporting-functions" id="gt-exporting-functions" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>Exporting Functions</em></h3>
+				</a>
+				<a href="#asvfile" id="asvfile" style="color: inherit; text-decoration: none;">
+					<h3><strong>asVfile()</strong></h3>
+				</a>
+				<blockquote>
+					<p>turn an S3 object into a vfile</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>i : <code>S3Item</code></li>
+						</ul>
+					</li>
+					<li><p><code>returns</code></p>
+						<ul>
+							<li><code>Vfile</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#asvinyl" id="asvinyl" style="color: inherit; text-decoration: none;">
+					<h3><strong>asVinyl()</strong></h3>
+				</a>
+				<blockquote>
+					<p>turn an S3 object into a vinyl</p>
+				</blockquote>
+				<ul>
+					<li><code>params</code><ul>
+							<li>i : <code>S3Item</code></li>
+						</ul>
+					</li>
+					<li><code>returns</code><ul>
+							<li><code>Vinyl</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#ass3" id="ass3" style="color: inherit; text-decoration: none;">
+					<h3><strong>asS3()</strong></h3>
+				</a>
+				<blockquote>
+					<p>Just pass the S3 object structure along</p>
+				</blockquote>
+				<ul>
+					<li><code>params</code><ul>
+							<li>i : <code>S3Item</code></li>
+						</ul>
+					</li>
+					<li><code>returns</code><ul>
+							<li><code>S3Item</code></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#namesake" id="namesake" style="color: inherit; text-decoration: none;">
+					<h4>namesake</h4>
+				</a>
+				<p><code>crawfish cloud</code> because regular crawfish are delightful and they crawl around amongst the buckets - but crawfishcloud crawl in the cloud buckets.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/crawfishtypes.html">crawfish<wbr>Types</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/crawfishtypes.s3.html">crawfish<wbr>Types.<wbr>S3</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/crawfishtypes.s3.managedupload.html">crawfish<wbr>Types.<wbr>S3.<wbr>Managed<wbr>Upload</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/crawfishtypes.s3.presignedpost.html">crawfish<wbr>Types.<wbr>S3.<wbr>Presigned<wbr>Post</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-property">
+						<a href="modules.html#default" class="tsd-kind-icon">default</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#ass3" class="tsd-kind-icon">as<wbr>S3</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#asvfile" class="tsd-kind-icon">as<wbr>Vfile</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#asvinyl" class="tsd-kind-icon">as<wbr>Vinyl</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#crawler" class="tsd-kind-icon">crawler</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
