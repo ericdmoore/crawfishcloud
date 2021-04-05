@@ -11,7 +11,7 @@
   "scripts": {
     "test": "jest --coverage",
     "docs": "typedoc src/index.ts",
-    "prep": "npm run docs; npm run build",
+    "prep": "npm run build; npm run docs",
     "build": "npm run build:esbuild",
     "build:esbuild": "esbuild src/index.ts --format=iife --platform=node --minify --bundle > build/index.min.js",
     "build:check": "esbuild src/index.ts > /dev/null",
