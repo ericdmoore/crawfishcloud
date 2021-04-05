@@ -91,7 +91,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     - body : `boolean`
     - using : `UsingFunc: (i:S3Item)=><T>`
     - NextContinuationToken? : `string | undefined`
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
@@ -105,7 +105,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
   - body : `boolean`
   - using : `UsingFunc: (i:S3Item)=><T>`
-  - ...filters: `string[]`
+  - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
   
 - `returns`
 
@@ -120,7 +120,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
     - body : `boolean`
     - using : `UsingFunc: (i:S3Item)=><T>`
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 - `returns` 
 
@@ -136,7 +136,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 - `returns`
 
@@ -148,7 +148,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 - `returns`
 
@@ -160,7 +160,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
@@ -175,7 +175,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
@@ -188,7 +188,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
@@ -201,7 +201,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
@@ -214,7 +214,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
@@ -224,7 +224,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
@@ -234,7 +234,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 -  `params`
 
-    - ...filters: `string[]`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
 
 -  `returns`
 
