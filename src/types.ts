@@ -44,7 +44,7 @@ export interface CrawfishCloudReturnNoProto{
      * @todo Decide how to handle overlapping paths from varrying buckets
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -66,7 +66,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -88,7 +88,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -111,7 +111,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - S3 url globs
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -131,7 +131,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -154,7 +154,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -177,7 +177,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -202,7 +202,7 @@ export interface CrawfishCloudReturnNoProto{
      * @todo Decide how to handle overlapping paths from varrying buckets
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -226,7 +226,7 @@ export interface CrawfishCloudReturnNoProto{
      * @todo Decide how to handle overlapping paths from varrying buckets
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -250,7 +250,7 @@ export interface CrawfishCloudReturnNoProto{
      * @todo Decide how to handle overlapping paths from varrying buckets
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -273,7 +273,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -293,7 +293,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
@@ -313,7 +313,7 @@ export interface CrawfishCloudReturnNoProto{
      * @param filters - Set of S3 URL glob filters
      * @example
      ```ts
-        import crawler, {asVfile} from 'crawfishcloud'
+        import {crawler, asVfile} from 'crawfishcloud'
         import {S3, SharedIniFileCredentials} from 'aws-sdk'
         const credentials = new SharedIniFileCredentials({profile:'default'})
         const s3c = new S3({credentials, region:'us-west-2'})
