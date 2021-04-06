@@ -95,10 +95,33 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
         return acc
     }
     
+    /**
+     * 
+     * @param init - starting value for reducer
+     * @param mapper - maps S3Item input type to other types
+     * @param reducer - folds the set of S3Items and folds them d
+     * @param filters - S3 url globs
+     */
+    const reduce = async <OutType,ElemType>(
+            init:OutType, 
+            mapper:k.UsingFunc<ElemType>, 
+            reducer:(prior:OutType, current:ElemType, i:number)=>OutType, 
+            ...filters:string[]) => {
+
+        let j = 0
+        for await(const elem of iter({body:true, using: mapper },...filters)){
+            init = reducer(init, elem, j)
+            j++
+        }
+        return init
+    }
+
+
     return { 
         iter, 
         all, 
         stream,
+        reduce,
 
         vfileStream: ( ...filters: string[]) => crawler(input).stream({body:true, using: asVfile}, ...filters),
         vinylStream: ( ...filters: string[]) => crawler(input).stream({body: true, using: asVinyl}, ...filters),

@@ -34,7 +34,8 @@ export interface CrawfishCloudReturnNoProto{
     iter<T>(inp:{body:boolean, using:UsingFunc<T>, NextContinuationToken?: string}, ...filters: string[]) : AsyncGenerator<T, void, undefined>
     stream<T>(inp:{body:boolean, using:UsingFunc<T>}, ...filters: string[]) : Readable
     all<T>(inp:{body:boolean, using:UsingFunc<T>}, ...filters: string[]) : Promise<T[]>
-
+    reduce<T,U> (init:T, mapper:UsingFunc<U>, reducer:(prior:T, current:U, i:number)=>T, ...filters:string[]): Promise<T>
+    
     vfileStream( ...filters: string[]) : Readable
     vinylStream(...filters: string[]) : Readable
     s3Stream(...filters: string[]) : Readable
