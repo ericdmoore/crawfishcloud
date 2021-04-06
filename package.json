@@ -2,7 +2,14 @@
   "name": "crawfishcloud",
   "version": "0.6.0",
   "description": "A Streaming S3 Bucket Glob Crawler",
-  "main": "./build/index.js",
+  "--type": "module",
+  "main": "./build/_/index.mjs",
+  "exports":{
+    ".":{
+      "require":"./build/_/index.cjs",
+      "import":"./build/_/index.mjs"
+    }
+  },
   "types": "./src/index.ts",
   "files": [
     "src/",
@@ -17,10 +24,14 @@
     "docs": "typedoc src/index.ts",
     "prep": "echo 'npm run clear:build; npm test; npm run docs; npx tsc'",
     "np:prep": "npm run build; npm run docs",
-    "clear:build": "rm -rf build/; mkdir build",
-    "build": "npm run clear:build; npm run build:esbuild",
+    "clear:build": "rm -rf build/; mkdir -p build/_",
+    "build": "npm run clear:build; npm run build:esb",
     "build:tsc": "npm run clear:build; tsc",
-    "build:esbuild": "esbuild src/index.ts --format=cjs --target=node12 --platform=node --bundle > build/index.min.js",
+    "build:esb":"npm run clear:build ; npm run build:esb_esm ; npm run build:esb_cjs ; npm run build:esb_mincjs ; npm run build:esb_minesm",
+    "build:esb_esm": "esbuild src/index.ts        --format=esm --target=node12 --platform=node --bundle > build/_/index.mjs",
+    "build:esb_minesm": "esbuild src/index.ts     --format=esm --target=node12 --platform=node --bundle --minify > build/_/index.min.mjs",
+    "build:esb_cjs": "esbuild src/index.ts --format=cjs --target=node12 --platform=node --bundle > build/_/index.cjs",
+    "build:esb_mincjs": "esbuild src/index.ts  --format=cjs --target=node12 --platform=node --bundle --minify > build/_/index.min.cjs",
     "build:check": "esbuild src/index.ts > /dev/null",
     "prepare": "husky install"
   },
@@ -46,7 +57,7 @@
   "bugs": {
     "url": "https://github.com/ericdmoore/crawfishcloud/issues"
   },
-  "--bundledDependencies": [
+  "bundledDependencies": [
     "vfile",
     "vinyl",
     "micromatch"
