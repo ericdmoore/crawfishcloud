@@ -2,7 +2,7 @@
   "name": "crawfishcloud",
   "version": "0.5.0",
   "description": "A Streaming S3 Bucket Glob Crawler",
-  "main": "./build/index.min.js",
+  "main": "./build/index.js",
   "types": "./src/index.ts",
   "files": [
     "src/",
@@ -13,11 +13,14 @@
     "docs": "docs"
   },
   "scripts": {
-    "test": "npm run build; jest --coverage",
+    "test": "jest --coverage",
     "docs": "typedoc src/index.ts",
+    "prep":"echo 'npm run clear:build; npm test; npm run docs; npx tsc'",
     "np:prep": "npm run build; npm run docs",
-    "build": "npm run build:esbuild",
-    "build:esbuild": "esbuild src/index.ts --format=iife --target=node12 --platform=node --bundle > build/index.min.js",
+    "clear:build":"rm -rf build/; mkdir build",
+    "build": "npm run clear:build; npm run build:esbuild",
+    "build:tsc": "npm run clear:build; tsc",
+    "build:esbuild": "esbuild src/index.ts --format=cjs --target=node12 --platform=node --bundle > build/index.min.js",
     "build:check": "esbuild src/index.ts > /dev/null",
     "prepare": "husky install"
   },
@@ -43,7 +46,7 @@
   "bugs": {
     "url": "https://github.com/ericdmoore/crawfishcloud/issues"
   },
-  "bundledDependencies": [
+  "--bundledDependencies": [
     "vfile",
     "vinyl",
     "micromatch"
