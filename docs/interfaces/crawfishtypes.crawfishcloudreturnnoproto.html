@@ -113,9 +113,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L36">src/types.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L100">src/types.ts:100</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#get-a-promised-array-the-matched-files-from-s3" id="get-a-promised-array-the-matched-files-from-s3" style="color: inherit; text-decoration: none;">
+										<h2>Get a Promised Array the matched files from S3</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>where you can override the prior values of <code>body</code> and <code>filters</code></p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">arr</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">all</span><span style="color: #000000">({</span><span style="color: #001080">body:</span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">using:</span><span style="color: #000000"> </span><span style="color: #001080">asVfile</span><span style="color: #000000">})</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -137,6 +159,9 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -153,9 +178,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L34">src/types.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L58">src/types.ts:58</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#get-the-async-iterator" id="get-the-async-iterator" style="color: inherit; text-decoration: none;">
+										<h2>Get the Async Iterator</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>where you can override the prior values of <code>body</code> and <code>filters</code></p>
+									</dd>
+									<dt>todo</dt>
+									<dd><p>Decide how to handle overlapping paths from varrying buckets</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #AF00DB">for</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> (</span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">vf</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">iter</span><span style="color: #000000">({</span><span style="color: #001080">body:</span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">using:</span><span style="color: #000000"> </span><span style="color: #001080">asVfile</span><span style="color: #000000">}) ){</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">vf</span><span style="color: #000000">)</span>
+<span style="color: #000000">}    </span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -180,6 +232,9 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncGenerator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -196,9 +251,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L37">src/types.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L123">src/types.ts:123</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#reduce-the-files-in-the-s3-globs-to-a-result" id="reduce-the-files-in-the-s3-globs-to-a-result" style="color: inherit; text-decoration: none;">
+										<h2>Reduce the files in the S3 Globs to a result.</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Reduce the files represented in the glob into a new Type.
+											The process will batch sets of 1000 elements into memory and reduce them from there.
+										Larger memory trades for speed since you spend  less time spent setting up network connections and buffering network responses</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">count</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">reduce</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #001080">using</span><span style="color: #000000">: </span><span style="color: #001080">asS3</span><span style="color: #000000">, </span><span style="color: #001080">reducer</span><span style="color: #000000">:(</span><span style="color: #001080">p</span><span style="color: #000000">)</span><span style="color: #0000FF">=&gt;</span><span style="color: #001080">p</span><span style="color: #000000">+</span><span style="color: #098658">1</span><span style="color: #000000">)</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -212,12 +291,18 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>init: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>starting value for reducer</p>
+									</div>
 								</li>
 								<li>
 									<h5>mapper: <a href="../modules/crawfishtypes.html#usingfunc" class="tsd-signature-type" data-tsd-kind="Type alias">UsingFunc</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>reducer: <span class="tsd-signature-symbol">(</span>prior<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, current<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">U</span>, i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>folds the set of S3Items into a new Type</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
@@ -245,6 +330,9 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>S3 url globs</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -261,13 +349,38 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L49">src/types.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L325">src/types.ts:325</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#promised-s3items-array" id="promised-s3items-array" style="color: inherit; text-decoration: none;">
+										<h2>Promised S3Items Array</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>load the whole glob set into memory and resolve</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">arr</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">s3Array</span><span style="color: #000000">()</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/crawfishtypes.html#s3item" class="tsd-signature-type" data-tsd-kind="Type alias">S3Item</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -284,13 +397,43 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L45">src/types.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L264">src/types.ts:264</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#async-iterator-with-s3-items---since-the-data-starts-out-that-way" id="async-iterator-with-s3-items---since-the-data-starts-out-that-way" style="color: inherit; text-decoration: none;">
+										<h2>Async Iterator with S3 Items - since the data starts out that way...</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Asyn Generator of S3Items</p>
+									</dd>
+									<dt>todo</dt>
+									<dd><p>Decide how to handle overlapping paths from varrying buckets</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">})</span>
+<span style="color: #AF00DB">for</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> (</span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3i</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">s3Iter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">) ){</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">s3i</span><span style="color: #000000">)</span>
+<span style="color: #000000">}</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncGenerator</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/crawfishtypes.html#s3item" class="tsd-signature-type" data-tsd-kind="Type alias">S3Item</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -307,13 +450,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L41">src/types.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L191">src/types.ts:191</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#s3-stream" id="s3-stream" style="color: inherit; text-decoration: none;">
+										<h2>S3 Stream</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>where you can override the prior values of <code>body</code> and <code>filters</code></p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">})</span>
+<span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">s3Stream</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">S3ImageOptim</span><span style="color: #000000">())</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">destinationFolder</span><span style="color: #000000">())</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span></h4>
@@ -330,9 +500,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L35">src/types.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L80">src/types.ts:80</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#get-a-stream" id="get-a-stream" style="color: inherit; text-decoration: none;">
+										<h2>Get a Stream</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>where you can override the prior values of <code>body</code> and <code>filters</code></p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">stream</span><span style="color: #000000">({</span><span style="color: #001080">body:</span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">using:</span><span style="color: #000000"> </span><span style="color: #001080">asVfile</span><span style="color: #000000">})</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">rehypePipe</span><span style="color: #000000">())</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">destinationFolder</span><span style="color: #000000">())</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -354,6 +548,9 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span></h4>
@@ -370,13 +567,38 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L47">src/types.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L285">src/types.ts:285</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#promised-vfile-array" id="promised-vfile-array" style="color: inherit; text-decoration: none;">
+										<h2>Promised Vfile Array</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>load the whole glob set into memory and resolve</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">vfArr</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">vfileArray</span><span style="color: #000000">()</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="crawfishtypes.vfile.html" class="tsd-signature-type" data-tsd-kind="Interface">VFile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -393,13 +615,43 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L43">src/types.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L216">src/types.ts:216</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#async-iterator-with-vfiles" id="async-iterator-with-vfiles" style="color: inherit; text-decoration: none;">
+										<h2>Async Iterator with <a href="https://github.com/vfile/vfile">vfiles</a></h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>where you can override the prior values of <code>body</code> and <code>filters</code></p>
+									</dd>
+									<dt>todo</dt>
+									<dd><p>Decide how to handle overlapping paths from varrying buckets</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">})</span>
+<span style="color: #AF00DB">for</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> (</span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">vf</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">vfileIter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">) ){</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">vf</span><span style="color: #000000">)</span>
+<span style="color: #000000">}    </span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncGenerator</span><span class="tsd-signature-symbol">&lt;</span><a href="crawfishtypes.vfile.html" class="tsd-signature-type" data-tsd-kind="Interface">VFile</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -416,13 +668,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L39">src/types.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L145">src/types.ts:145</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#vfile-stream" id="vfile-stream" style="color: inherit; text-decoration: none;">
+										<h2>Vfile Stream</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>within the <code>unifiedjs</code> ecosystem its useful to get a stream of vfiles - this method is setup for that use case.</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">})</span>
+<span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">vfileStream</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">jpgOptim</span><span style="color: #000000">())</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">destinationFolder</span><span style="color: #000000">())</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span></h4>
@@ -439,13 +718,38 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L48">src/types.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L305">src/types.ts:305</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#promised-vinyls-array" id="promised-vinyls-array" style="color: inherit; text-decoration: none;">
+										<h2>Promised Vinyls Array</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>load the whole glob set into memory and resolve</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">vArr</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">vinylArray</span><span style="color: #000000">()</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">File</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -462,13 +766,43 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L44">src/types.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L240">src/types.ts:240</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#async-iterator-with-vinyls" id="async-iterator-with-vinyls" style="color: inherit; text-decoration: none;">
+										<h2>Async Iterator with <a href="https://github.com/gulpjs/vinyl">vinyls</a></h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>where you can override the prior values of <code>body</code> and <code>filters</code></p>
+									</dd>
+									<dt>todo</dt>
+									<dd><p>Decide how to handle overlapping paths from varrying buckets</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">})</span>
+<span style="color: #AF00DB">for</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> (</span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">v</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">vinylIter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">) ){</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">vf</span><span style="color: #000000">)</span>
+<span style="color: #000000">}    </span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncGenerator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">File</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -485,13 +819,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/types.ts#L40">src/types.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/types.ts#L168">src/types.ts:168</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<a href="#vinyl-stream" id="vinyl-stream" style="color: inherit; text-decoration: none;">
+										<h2>Vinyl Stream</h2>
+									</a>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>within the gulp ecosystem its useful to get a stream of vinbyls - this method is setup for that use case.</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">})</span>
+<span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">vinylStream</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">jpgOptim</span><span style="color: #000000">())</span>
+<span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">destinationFolder</span><span style="color: #000000">())</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set of S3 URL glob filters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span></h4>
@@ -582,12 +943,6 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="crawfishtypes.crawfishcloudreturnwproto.html" class="tsd-kind-icon">Crawfish<wbr>Cloud<wbr>ReturnWProto</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="crawfishtypes.crawfishcloudwproto.html" class="tsd-kind-icon">Crawfish<wbr>Cloudw<wbr>Proto</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="crawfishtypes.s3bucketprefix.html" class="tsd-kind-icon">S3<wbr>Bucket<wbr>Prefix</a>
 					</li>

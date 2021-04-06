@@ -107,7 +107,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/exporters.ts#L17">src/exporters.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/exporters.ts#L17">src/exporters.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -133,7 +133,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/exporters.ts#L19">src/exporters.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/exporters.ts#L19">src/exporters.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -159,7 +159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/exporters.ts#L29">src/exporters.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/exporters.ts#L29">src/exporters.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -185,9 +185,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/32d18e8/src/crawfishcloud.ts#L8">src/crawfishcloud.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/ericdmoore/crawfishcloud/blob/2954461/src/crawfishcloud.ts#L26">src/crawfishcloud.ts:26</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The crawler takes a base config of your S3Client object, and some base configs, that setup your defaults for the crawler.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>todo</dt>
+									<dd><ul>
+											<li>code to help lack of acccess to S3</li>
+										</ul>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">s3c</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">, </span><span style="color: #001080">region:</span><span style="color: #A31515">&#039;us-west-2&#039;</span><span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crab</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://ericdmoore.com-images/*.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ret</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">crab</span><span style="color: #000000">.</span><span style="color: #795E26">vfileArray</span><span style="color: #000000">()</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -201,11 +222,17 @@
 										</li>
 										<li class="tsd-parameter">
 											<h5>s3c<span class="tsd-signature-symbol">: </span><a href="classes/crawfishtypes.s3-1.html" class="tsd-signature-type" data-tsd-kind="Class">S3</a></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>a configured S3 Client that is authorized to make calls</p>
+											</div>
 										</li>
 									</ul>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>filters: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>default set of S3 Url globs</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/crawfishtypes.crawfishcloudreturnnoproto.html" class="tsd-signature-type" data-tsd-kind="Interface">CrawfishCloudReturnNoProto</a></h4>

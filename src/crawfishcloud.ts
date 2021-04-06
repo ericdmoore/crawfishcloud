@@ -5,6 +5,24 @@ import type * as k from './types'
 import { asVfile, asVinyl, asS3} from './exporters'
 import { s3urlToConfigWfilters, s3ConfigToUrl , loadObjectList} from './utils'
 
+
+/**
+ * The crawler takes a base config of your S3Client object, and some base configs, that setup your defaults for the crawler.  
+ *
+ * @param input 
+ * @param input.s3c - a configured S3 Client that is authorized to make calls
+ * @param filters - default set of S3 Url globs
+ * @todo - code to help lack of acccess to S3
+ * @example
+  ```ts
+    import crawler from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    const ret = await crab.vfileArray()
+  ```
+ */
 export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:number }, ...filters: string[]):k.CrawfishCloudReturnNoProto {
     const config = {
         filters,
@@ -20,10 +38,26 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
     /**
      * Get the Async Iterator
      * @description where you can override the prior values of `body` and `filters` 
-     * @param inp 
-     * @param filters 
+     * @param i - input param
+     * @param i.body - Option to include or ignore the file body? Adding it is more useful but slower
+     * @param i.using - transform the S3Item to another data structure `using` this fn
+     * @param i.NextContinuationToken - Move to the next page of results for a given S3 prefix with the NextContinuationToken string from the S3 service
+     * @param filters - Set of S3 URL glob filters
+     * @todo Decide how to handle overlapping paths from varrying buckets
+     * @example
+     ```ts
+        import crawler, {asVfile} from 'crawfishcloud'
+        import {S3, SharedIniFileCredentials} from 'aws-sdk'
+        const credentials = new SharedIniFileCredentials({profile:'default'})
+        const s3c = new S3({credentials, region:'us-west-2'})
+        
+        const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+        for await (const vf of crab.iter({body:true, using: asVfile}) ){
+            console.log(vf)
+        }    
+     ```
      */
-    const iter = async function * <T>(inp: {body:boolean, using: k.UsingFunc<T>, NextContinuationToken?:string,}, ...filters:string[]) : AsyncGenerator<T, void, undefined>{
+    const iter = async function * <T>(i: {body:boolean, using: k.UsingFunc<T>, NextContinuationToken?:string,}, ...filters:string[]) : AsyncGenerator<T, void, undefined>{
         const bucketPrefixes = filters.length > 0 ? filters.map(s3urlToConfigWfilters) : config.BucketsPrefixes
 
         // uses for loop to not add function scope to the asyncGenerator
@@ -34,35 +68,35 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
             const {Bucket, Key, prefix, suffix} = bucketPrefixes[j]
             // console.log({Bucket, Key, prefix, suffix})
             
-            const objListResp = await s3c.listObjectsV2({Bucket, MaxKeys, Prefix: prefix, ContinuationToken: inp.NextContinuationToken}).promise()
+            const objListResp = await s3c.listObjectsV2({Bucket, MaxKeys, Prefix: prefix, ContinuationToken: i.NextContinuationToken}).promise()
             // console.log({objListResp})
             
             const keyList = objListResp.Contents ?? []
             const keyListFiltered = await Promise.all(keyList.filter(e => isMatch(e.Key ?? '', `${prefix}${suffix}`, {bash:true })))
 
-            if(!inp.body){
+            if(!i.body){
                 const mappedList = await Promise.all(
-                    keyListFiltered.map( (v,k) => inp.using( { ...v, Body:'' },k) as unknown as Promise<T> )
+                    keyListFiltered.map( (v,k) => i.using( { ...v, Body:'' },k) as unknown as Promise<T> )
                 )
                 yield* mappedList
 
                 if(objListResp.NextContinuationToken){
                     yield* iter({
-                            body: inp.body, 
-                            using: inp.using, 
+                            body: i.body, 
+                            using: i.using, 
                             NextContinuationToken: objListResp.NextContinuationToken
                         },
                         s3ConfigToUrl({Bucket, Key}))
                 }
             }else{
                 const namedObjList = await loadObjectList(s3c, Bucket, ...keyListFiltered)
-                const r = await Promise.all(namedObjList.map((v,k) => inp.using({...v, Body: v.Body as k.S3NodeBody}, k) as unknown as Promise<T>))
+                const r = await Promise.all(namedObjList.map((v,k) => i.using({...v, Body: v.Body as k.S3NodeBody}, k) as unknown as Promise<T>))
                 yield* r
                 
                 if(objListResp.NextContinuationToken){
                     yield* iter({
-                            body: inp.body, 
-                            using: inp.using, 
+                            body: i.body, 
+                            using: i.using, 
                             NextContinuationToken: objListResp.NextContinuationToken
                         },
                         s3ConfigToUrl({Bucket, Key}))
@@ -74,18 +108,47 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
     /**
      * Stream 
      * @description where you can override the prior values of `body` and `filters` 
-     * @param i 
-     * @param filters 
+     * @param i - input param
+     * @param i.body - Option to include or ignore the file body? Adding it is more useful but slower
+     * @param i.using - transform the S3Item to another data structure `using` this fn
+     * @param filters - Set of S3 URL glob filters
+     * @example
+     ```ts
+        import crawler, {asVfile} from 'crawfishcloud'
+        import {S3, SharedIniFileCredentials} from 'aws-sdk'
+        const credentials = new SharedIniFileCredentials({profile:'default'})
+        const s3c = new S3({credentials, region:'us-west-2'})
+        
+        const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+        crab.stream({body:true, using: asVfile})
+            .pipe(rehypePipe())
+            .pipe(destinationFolder())
+     ```
      */
      const stream = <T>(i:{body:boolean, using: k.UsingFunc<T>}, ...filters:string[])=>{
-        return Readable.from(iter(i, ...filters))
+        return Readable.from(
+            iter(i, ...filters), 
+            {objectMode: true}
+        )
     }
 
     /**
      * Resolveable Promise with an Array of All matches 
      * @description where you can override the prior values of `body` and `filters` 
-     * @param i 
-     * @param filters 
+     * @param i - input param
+     * @param i.body - Option to include or ignore the file body? Adding it is more useful but slower
+     * @param i.using - transform the S3Item to another data structure `using` this fn
+     * @param filters - Set of S3 URL glob filters
+     * @example
+     ```ts
+        import crawler, {asVfile} from 'crawfishcloud'
+        import {S3, SharedIniFileCredentials} from 'aws-sdk'
+        const credentials = new SharedIniFileCredentials({profile:'default'})
+        const s3c = new S3({credentials, region:'us-west-2'})
+
+        const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+        const arr = await crab.all({body:true, using: asVfile})
+     ```
      */
     const all = async <T>(i:{body:boolean, using: k.UsingFunc<T>}, ...filters:string[]): Promise<T[]>=>{
         const acc = [] as T[]
@@ -98,18 +161,28 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
     /**
      * 
      * @param init - starting value for reducer
-     * @param mapper - maps S3Item input type to other types
-     * @param reducer - folds the set of S3Items and folds them d
+     * @param using - mapper for transforming an S3Item into other types
+     * @param reducer - folds the set of S3Items into a new Type
      * @param filters - S3 url globs
+     * @example
+     ```ts
+        import crawler, {asVfile} from 'crawfishcloud'
+        import {S3, SharedIniFileCredentials} from 'aws-sdk'
+        const credentials = new SharedIniFileCredentials({profile:'default'})
+        const s3c = new S3({credentials, region:'us-west-2'})
+
+        const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+        const count = await crab.reduce(0, using: asS3, reducer:(p)=>p+1)
+     ```
      */
     const reduce = async <OutType,ElemType>(
             init:OutType, 
-            mapper:k.UsingFunc<ElemType>, 
-            reducer:(prior:OutType, current:ElemType, i:number)=>OutType, 
+            using:k.UsingFunc<ElemType>, 
+            reducer:(prior:OutType, current:ElemType, i:number)=>OutType,
             ...filters:string[]) => {
 
         let j = 0
-        for await(const elem of iter({body:true, using: mapper },...filters)){
+        for await(const elem of iter({body:true, using },...filters)){
             init = reducer(init, elem, j)
             j++
         }
