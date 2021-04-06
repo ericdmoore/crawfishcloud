@@ -88,7 +88,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     1. [asS3 (i:S3Item) => S3Item](#asS3)
 
 
-### crawler()
+### [crawler()](https://ericdmoore.github.io/crawfishcloud/modules.html#crawler)
 
 > `function` default export "aka: crawler"
 
