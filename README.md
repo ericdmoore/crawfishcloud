@@ -12,7 +12,7 @@
 [![NPM Version][npm-version-shield]][npm-version-url]
 [![Pkg Size][size-shield]][size-url]
 [![Code Coverage][coveralls-sheild]][coveralls-url]
-[![MIT License][license-shield]][license-url]
+[![CDDL-1.0 License][license-shield]][license-url]
 
 [![Github Activity][gh-commit-activity-shield]][gh-commit-activity-url]
 [![Issues Closed ][github-issues-closed-shield]][github-issues-closed-url]
@@ -24,7 +24,7 @@
 
 > A Streaming S3 Bucket Glob Crawler
 
-![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds](https://raw.githubusercontent.com/ericdmoore/crawfishcloud/main/imgs/deepart2.jpg)
+![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds][project-pic]
 
 ## Install
 
@@ -309,7 +309,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/ericdmooreccrawfishcloud?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/ericdmoore/crawfishcloud?style=for-the-badge
 [contributors-url]: https://github.com/ericdmoore/crawfishcloud/graphs/contributors
 
 [forks-shield]: https://img.shields.io/github/forks/ericdmoore/crawfishcloud?style=for-the-badge
@@ -330,7 +330,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
 [linkedin-url]: https://linkedin.com/in/eric.moore
-[product-screenshot]: images/screenshot.png
+[project-pic]: https://raw.githubusercontent.com/ericdmoore/crawfishcloud/main/imgs/deepart2.jpg
 
 [ftb-winter-shield]: https://forthebadge.com/images/badges/winter-is-coming.svg
 [ftb-winter-url]: https://github.com/federalies/dynamoco/wiki#winter-is-coming
