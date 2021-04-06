@@ -17,7 +17,7 @@
     "docs": "typedoc src/index.ts",
     "np:prep": "npm run build; npm run docs",
     "build": "npm run build:esbuild",
-    "build:esbuild": "esbuild src/index.ts --format=iife --platform=node --minify --bundle > build/index.min.js",
+    "build:esbuild": "esbuild src/index.ts --format=iife --target=node12 --platform=node --bundle > build/index.min.js",
     "build:check": "esbuild src/index.ts > /dev/null",
     "prepare": "husky install"
   },
