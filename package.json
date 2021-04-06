@@ -1,13 +1,16 @@
 {
   "name": "crawfishcloud",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A Streaming S3 Bucket Glob Crawler",
   "main": "./build/index.min.js",
   "types": "./src/index.ts",
-  "files": ["src/" , "build/"],
+  "files": [
+    "src/",
+    "build/"
+  ],
   "directories": {
-    "lib":"src", 
-    "docs":"docs"
+    "lib": "src",
+    "docs": "docs"
   },
   "scripts": {
     "test": "npm run build; jest --coverage",
@@ -40,7 +43,11 @@
   "bugs": {
     "url": "https://github.com/ericdmoore/crawfishcloud/issues"
   },
-  "bundledDependencies":["vfile", "vinyl", "micromatch"],
+  "bundledDependencies": [
+    "vfile",
+    "vinyl",
+    "micromatch"
+  ],
   "peerDependencies": {
     "aws-sdk": "^2.870.0",
     "vfile": "^4.2.1",
