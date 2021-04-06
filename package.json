@@ -1,6 +1,6 @@
 {
   "name": "crawfishcloud",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "A Streaming S3 Bucket Glob Crawler",
   "--type": "module",
   "main": "./build/_/index.mjs",
@@ -25,7 +25,7 @@
     "prep": "echo 'npm test; npm run docs; npm run build:esb'",
     "np:prep": "npm run build; npm run docs",
     "clear:build": "rm -rf build/; mkdir -p build/_",
-    "lint":"eslint src/index.ts src/crawfishcloud.ts --fix",
+    "lint": "eslint src/index.ts src/crawfishcloud.ts --fix",
     "build": "npm run clear:build; npm run build:esb",
     "build:tsc": "npm run clear:build; tsc",
     "build:esb": "npm run clear:build ; npm run build:esb_esm ; npm run build:esb_cjs ; npm run build:esb_mincjs ; npm run build:esb_minesm",
