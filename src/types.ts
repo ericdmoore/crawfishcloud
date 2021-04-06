@@ -26,11 +26,6 @@ export interface S3BucketPrefix {
 export type Dict<T> = {[key:string]:T}
 export type UsingFunc<T> = (s3Item: S3Item, i:number) => Promise<T>
 
-
-
-
-
-
 export interface CrawfishCloud{
     (input:{s3c: S3, body?: boolean, maxkeys?:number }, ...filters: string[]) : CrawfishCloudReturnNoProto
 }
