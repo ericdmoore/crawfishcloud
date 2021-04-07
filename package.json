@@ -42,35 +42,26 @@
     "type": "git",
     "url": "git+https://github.com/ericdmoore/crawfishcloud.git"
   },
-  "keywords": [
-    "S3",
-    "Bucket",
-    "Stream",
-    "vfile",
-    "vinyl",
-    "glob"
-  ],
+  "keywords": ["S3","Bucket","Stream","vfile","vinyl","glob"],
   "license": "MIT",
   "author": {
     "name": "Eric D Moore",
     "url": "https://im.ericdmoore.com",
     "email": "eric.d.moore+crawfishcloud@gmail.com"
   },
-  "bugs": {
-    "url": "https://github.com/ericdmoore/crawfishcloud/issues"
-  },
+  "bugs": {"url": "https://github.com/ericdmoore/crawfishcloud/issues"},
   "bundledDependencies": [
     "vfile",
     "vinyl",
     "micromatch"
   ],
   "peerDependencies": {
-    "aws-sdk": "^2.881.0",
-    "vfile": "^4.2.1",
-    "vinyl": "^2.2.1"
+    "aws-sdk": "^2.881.0"
   },
   "dependencies": {
-    "micromatch": "^4.0.2"
+    "micromatch": "^4.0.2",
+    "vfile": "^4.2.1",
+    "vinyl": "^2.2.1"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
