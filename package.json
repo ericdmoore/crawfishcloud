@@ -1,6 +1,6 @@
 {
   "name": "crawfishcloud",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "A Streaming S3 Bucket Glob Crawler",
   "--type": "module",
   "main": "./build/_/index.mjs",
@@ -42,14 +42,23 @@
     "type": "git",
     "url": "git+https://github.com/ericdmoore/crawfishcloud.git"
   },
-  "keywords": ["S3","Bucket","Stream","vfile","vinyl","glob"],
+  "keywords": [
+    "S3",
+    "Bucket",
+    "Stream",
+    "vfile",
+    "vinyl",
+    "glob"
+  ],
   "license": "MIT",
   "author": {
     "name": "Eric D Moore",
     "url": "https://im.ericdmoore.com",
     "email": "eric.d.moore+crawfishcloud@gmail.com"
   },
-  "bugs": {"url": "https://github.com/ericdmoore/crawfishcloud/issues"},
+  "bugs": {
+    "url": "https://github.com/ericdmoore/crawfishcloud/issues"
+  },
   "bundledDependencies": [
     "vfile",
     "vinyl",
