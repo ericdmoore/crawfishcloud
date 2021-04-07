@@ -24,12 +24,14 @@ export interface S3BucketPrefix {
 }
 
 export type S3NodeBody = Buffer | string | Readable ;
-export type FullS3Object = S3.Object & S3.GetObjectOutput
+export type FullS3Object = S3.Object & S3.GetObjectOutput & { Bucket:string } 
 export type S3Item = FullS3Object & { Body: S3NodeBody }
 
 export type Dict<T> = {[key:string]:T}
 export type UsingFunc<T> = (s3Item: S3Item, i:number) => Promise<T>
 
+export type VfileWithBucket = VFile & { Bucket:string }
+export type VinylWithBucket = Vinyl & { Bucket:string }
 
 
 export interface CrawfishCloudReturnNoProto{

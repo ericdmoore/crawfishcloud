@@ -76,7 +76,7 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
 
             if(!i.body){
                 const mappedList = await Promise.all(
-                    keyListFiltered.map( (v,k) => i.using( { ...v, Body:'' },k) as unknown as Promise<T> )
+                    keyListFiltered.map( (v,k) => i.using( { ...v, Bucket, Body:'' },k) as unknown as Promise<T> )
                 )
                 yield* mappedList
 
@@ -90,7 +90,7 @@ export const crawler = function (input:{s3c: k.S3, body?: boolean, maxkeys?:numb
                 }
             }else{
                 const namedObjList = await loadObjectList(s3c, Bucket, ...keyListFiltered)
-                const r = await Promise.all(namedObjList.map((v,k) => i.using({...v, Body: v.Body as k.S3NodeBody}, k) as unknown as Promise<T>))
+                const r = await Promise.all(namedObjList.map((v,k) => i.using({...v, Bucket, Body: v.Body as k.S3NodeBody}, k) as unknown as Promise<T>))
                 yield* r
                 
                 if(objListResp.NextContinuationToken){

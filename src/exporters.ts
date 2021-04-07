@@ -21,17 +21,34 @@ export const asVfile = async (o:k.S3Item, i:number ): Promise<vfile.VFile> =>{
     
     const Body = o.Body as k.S3NodeBody
     if( Buffer.isBuffer(Body) || typeof Body === 'string' ){
-        return vfile({path: o.Key, contents: Buffer.from(Body) })
+        return vfile({
+            path: o.Key, 
+            contents: Buffer.from(Body),
+            Bucket: o.Bucket
+        })  as unknown as k.VfileWithBucket
     } else {
-        return vfile({ path: o.Key, contents: await drainReadable('', Body,'') })
+        return vfile({ 
+            path: o.Key, 
+            contents: await drainReadable('', Body,''),
+            Bucket: o.Bucket
+        }) as unknown as k.VfileWithBucket
     }
 }
 
 export const asVinyl = async (o:k.S3Item, i:number): Promise<Vinyl> => {
     const Body = o.Body as k.S3NodeBody
     if( Buffer.isBuffer(Body) || typeof Body === 'string' ){
-        return new Vinyl ({path: o.Key, contents: Buffer.from(Body) })
+        return new Vinyl ({
+            path: o.Key, 
+            contents: Buffer.from(Body),
+            Bucket: o.Bucket
+        }) as unknown as k.VinylWithBucket
     } else {
-        return new Vinyl ({path: o.Key, contents: Buffer.from(await drainReadable('', Body,'')) })
+        return new Vinyl({
+            path: o.Key, 
+            contents: Buffer.from(await drainReadable('', Body,'')) ,
+            Bucket: o.Bucket
+        }) as unknown as k.VinylWithBucket
     }
 }
+
