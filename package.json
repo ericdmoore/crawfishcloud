@@ -6,8 +6,9 @@
   "main": "./build/_/index.mjs",
   "exports": {
     ".": {
-      "require": "./build/_/index.cjs",
-      "import": "./build/_/index.mjs"
+      "require": "./index.js",
+      "import": "./index.js",
+      "-import": "./build/_/index.mjs"
     }
   },
   "types": "./src/index.ts",
@@ -59,7 +60,7 @@
   "bugs": {
     "url": "https://github.com/ericdmoore/crawfishcloud/issues"
   },
-  "bundledDependencies": [
+  "--bundledDependencies": [
     "vfile",
     "vinyl",
     "micromatch"
