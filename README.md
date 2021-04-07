@@ -130,11 +130,14 @@ Now you can.
 - <details>
     <summary>example</summary>
     
-    ```js
-    const mdStream = crawler({s3c})
-                    .stream({ using: asVinyl },
-                            's3://Bucket/pref/**/*.md')
-    mdStream.pipe(gulp.dest('/public'))
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    const arr = await crab.all({body:true, using: asVfile})
     ```
     </details>
 <br/>
