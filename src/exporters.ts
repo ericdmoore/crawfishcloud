@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type * as k from './types'
 //
 import { Readable } from 'stream'
 import vfile from 'vfile'
 import Vinyl from 'vinyl'
 
-const drainReadable = (init:string , r: Readable, tail:string):Promise<string>=>{
-    let acc: string[]  = [init]
+export const drainReadable = (init:string , r: Readable, tail:string):Promise<string>=>{
+    const acc: string[]  = [init]
     return new Promise((resolve, reject)=>{
         r.on('data',(chunk) => {acc.push(chunk.toString())})
         .on('close',() => resolve(`${acc.join('')}${tail}` as string))
@@ -20,7 +21,7 @@ export const asVfile = async (o:k.S3Item, i:number ): Promise<vfile.VFile> =>{
     
     const Body = o.Body as k.S3NodeBody
     if( Buffer.isBuffer(Body) || typeof Body === 'string' ){
-        return vfile({path: o.Key, contents: Body })
+        return vfile({path: o.Key, contents: Buffer.from(Body) })
     } else {
         return vfile({ path: o.Key, contents: await drainReadable('', Body,'') })
     }
