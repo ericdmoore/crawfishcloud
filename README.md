@@ -10,10 +10,11 @@
 -->
 
 [![GH CI][github-action-(build/test)-shield]][github-action-(build/test)-url]
+[![codecov][code-test-coverage-shield]][code-test-coverage-url]
 
 [![NPM Version][npm-version-shield]][npm-version-url]
 [![Pkg Size][size-shield]][size-url]
-[![Code Coverage][coveralls-sheild]][coveralls-url]
+
 [![MIT License][license-shield]][license-url]
 
 [![Github Activity][gh-commit-activity-shield]][gh-commit-activity-url]
@@ -361,6 +362,9 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 [ftb-builtwith-shield]: https://forthebadge.com/images/badges/built-with-love.svg
 [ftb-by-devs-shield]: https://forthebadge.com/images/badges/built-by-developers.svg
 
+[code-test-coverage-shield]:https://codecov.io/gh/ericdmoore/crawfishcloud/branch/main/graph/badge.svg?token=HG4ZLG6E7H
+[code-test-coverage-url]:https://codecov.io/gh/ericdmoore/crawfishcloud
+
 [coveralls-sheild]:https://img.shields.io/coveralls/github/ericdmoore/crawfishcloud?style=for-the-badge
 [coveralls-url]:https://coveralls.io/github/ericdmoore/crawfishcloud
 
@@ -376,64 +380,3 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 [gh-commit-activity-url]:https://github.com/ericdmoore/crawfishcloud/pulse/monthly
 [gh-commit-activity-shield]:https://img.shields.io/github/commit-activity/m/ericdmoore/crawfishcloud?style=for-the-badge
 
-
-<!-- 
-
-<ol>crawler</ol>    
-        <ul></ul>
-        <ul></ul>
-        <ul></ul>
-    <ol>Base Functions</ol>
-        <ul>
-            <a href="#iter">
-            iter (i:{body, using, NextContinuationToken}, ...filters) => AsyncGenerator</a>
-        <ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-    <ol>Readable Node Streams</ol>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-    <ol>AsynGenerators</ol>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>   
-    <ol>PromisedArrays</ol>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>
-        <ul>
-            <a href="#">
-            </a>
-        </ul>   
-
--->
