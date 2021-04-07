@@ -69,7 +69,7 @@ const allJpgs = await crawler({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 crawler({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 ```
 
-## Why use Crawfishcloud?
+## Why use crawfishcloud?
 
 Ever had a set of files in S3 and you are thinking "Why can't I use a glob pattern like I would in a unix command, or in gulp, and pull all of those files out together?"
 
