@@ -68,9 +68,20 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
 ## Why use Crawfishcloud?
 
+Ever had a set of files in S3 and you are thinking "Why can't I use a glob pattern like I would in a unix command, or in gulp, and pull all of those files out together?"
+
+Now you can.
+
 ## Features
 
-## Related
+`crawfishcloud` supports 3 different modes of processing your streaming data.
+
+- Promised Arrays
+    - While this structure is admittedly the most straight forward, it can also blow through your RAM because collapsing an S3 stream to one array can often take more space than is commericial available for RAM. Sure, maybe you are thinking "I know my data, and I just need the 5 files loaded together from this s3 prefix, and I know it will fit" - then the `array pattern` is just the ticket.
+- Node Streams
+    - Node Streams are incredible if you are familiar with them. The `.stream()` pattern allows you to stream out a set of obejcts to your down stream processing.
+- AsyncGenerators
+    - For many people, although Async Generators are a newer addition to the language, it will strike a sweet spot of "ease of use" and still being able to process terribly large amounts of data. since its pulled from the network on demand.
 
 
 ## API Reference 
@@ -116,6 +127,17 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 - `returns`
   - `crawfishcloud`
 
+- <details>
+    <summary>example</summary>
+    
+    ```js
+    const mdStream = crawler({s3c})
+                    .stream({ using: asVinyl },
+                            's3://Bucket/pref/**/*.md')
+    mdStream.pipe(gulp.dest('/public'))
+    ```
+    </details>
+<br/>
 
 ### > *Base Returns* 
 ### **[iter()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#iter)**
@@ -132,6 +154,23 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 -  `returns`
 
     - AsyncGenerator with elements of type<T> where `T` is the 
+
+- <details>
+    <summary>example</summary>
+    
+   ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    for await (const vf of crab.iter({body:true, using: asVfile}) ){
+        console.log(vf)
+    }
+    ```
+    </details>
+<br/>
 
 ### **[stream()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#stream)**
 
@@ -150,12 +189,17 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 - <details>
     <summary>example</summary>
     
-    ```js
-    const mdStream = crawler({s3c})
-                    .stream({ using: asVinyl },
-                            's3://Bucket/pref/**/*.md')
-    mdStream.pipe(gulp.dest('/public'))
-    ```
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    crab.stream({body:true, using: asVfile})
+        .pipe(rehypePipe())
+        .pipe(destinationFolder())
+     ```
     </details>
 <br/>
 
@@ -173,6 +217,50 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
   - `Promise<T[]>`
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    const arr = await crab.all({body:true, using: asVfile})
+     ```
+    </details>
+<br/>
+
+### **[reduce()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#reduce)**
+
+> Reduce the files represented in the glob into a new Type. The process batches sets of 1000 elements into memory and reduces.
+
+-  `params`
+
+    - init : `<OutputType>` - starting value for reducer
+    - using : `UsingFunc: (i:S3Item)=><ElementType>`
+    - reducer : `(prior:OutputType, current:ElementType, i:number)=>OutputType`
+    - ...filters: `string[]` - will overite any configured filters already given to the crawfish - last filters in wins
+
+- `returns` 
+
+  - `Promise<OutputType>`
+
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    const count = await crab.reduce(0, using: asS3, reducer:(p)=>p+1)
+     ```
+    </details>
+<br/>
 
 
 ### > *Streams* 
@@ -189,6 +277,23 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
   - `Readable`
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c})
+    crab.vfileStream('s3://ericdmoore.com-images/*.jpg')
+        .pipe(jpgOptim())
+        .pipe(destinationFolder())
+     ```
+    </details>
+<br/>
+
 ### **[vinylStream()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vinylstream)**
 
 > a stream of [vinyl](https://github.com/gulpjs/vinyl)s
@@ -201,6 +306,23 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
     - `Readable`
 
+- <details>
+    <summary>example</summary>
+    
+   ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c})
+    crab.vinylStream('s3://ericdmoore.com-images/*.jpg')
+        .pipe(jpgOptim())
+        .pipe(destinationFolder())
+     ```
+    </details>
+<br/>
+
 ### **[s3Stream()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#s3stream)**
 
 > a stream of S3 Items where S3 list object keys are mixed in with the the getObject keys - called an `S3Item`
@@ -212,6 +334,23 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 -  `returns`
 
     - `Readable`
+
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c})
+    crab.s3Stream('s3://ericdmoore.com-images/*.jpg')
+        .pipe(S3ImageOptim())
+        .pipe(destinationFolder())
+     ```
+    </details>
+<br/>
 
 
 ### > *AsyncGenerators* 
@@ -228,6 +367,22 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
     - `AsyncGenerator<VFile, void, undefined>`
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c})
+    for await (const vf of crab.vfileIter('s3://ericdmoore.com-images/*.jpg') ){
+        console.log(vf)
+    }    
+    ```
+    </details>
+<br/>
 
 ### **[vinylIter()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vinyliter)**
 
@@ -241,6 +396,22 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
     - `AsyncGenerator<Vinyl, void, undefined>`
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c})
+    for await (const v of crab.vinylIter('s3://ericdmoore.com-images/*.jpg') ){
+        console.log(vf)
+    }    
+     ```
+    </details>
+<br/>
 
 ### **[s3Iter()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#s3iter)**
 
@@ -254,6 +425,22 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
     - `AsyncGenerator<S3Item, void, undefined>`
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c})
+    for await (const s3i of crab.s3Iter('s3://ericdmoore.com-images/*.jpg') ){
+        console.log(s3i)
+    }
+    ```
+    </details>
+<br/>
 
 ### > *Promised Arrays* 
 
@@ -269,6 +456,21 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
     - Promise<Vfile[]>
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    const vfArr = await crab.vfileArray()
+     ```
+    </details>
+<br/>
+
 ### **[vinylArray()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vinylarray)**
 
 > get an array of `vinyls` all loaded into a variable
@@ -280,6 +482,21 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 -  `returns`
 
     - Promise<Vinyl[]>
+
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    const vArr = await crab.vinylArray()
+     ```
+    </details>
+<br/>
 
 ### **[s3Array()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#s3array)**
 
@@ -293,6 +510,20 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 
     - Promise<S3Item[]>
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    const arr = await crab.s3Array()
+     ```
+    </details>
+<br/>
 
 
 ### > *Exporting Functions*
@@ -307,6 +538,23 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 - `returns`
     - `Vfile`
 
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVfile} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    for await (const vf of crab.iter({body:true, using: asVfile}) ){
+        console.log(vf)
+    }
+    ```
+    </details>
+<br/>
+
 ### **[asVinyl()](https://ericdmoore.github.io/crawfishcloud/modules.html#asvinyl)**
 
 > turn an S3 object into a vinyl
@@ -315,6 +563,22 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
     - i : `S3Item`
 - `returns`
     - `Vinyl`
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asVinyl} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    for await (const vf of crab.iter({body:true, using: asVinyl}) ){
+        console.log(vf)
+    }
+    ```
+    </details>
+<br/>
 
 ### **[asS3()](https://ericdmoore.github.io/crawfishcloud/modules.html#ass3)**
 
@@ -324,11 +588,28 @@ crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
     - i : `S3Item`
 - `returns`
     - `S3Item`
-
+- <details>
+    <summary>example</summary>
+    
+    ```ts
+    import {crawler, asS3} from 'crawfishcloud'
+    import {S3, SharedIniFileCredentials} from 'aws-sdk'
+    const credentials = new SharedIniFileCredentials({profile:'default'})
+    const s3c = new S3({credentials, region:'us-west-2'})
+    
+    const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+    for await (const vf of crab.iter({body:true, using: asS3}) ){
+        console.log(vf)
+    }
+    ```
+    </details>
+<br/>
 
 
 #### namesake
 `crawfish cloud` because why not, and because regular crawfish are delightful and they crawl around in a a bucket for a time. So clearly `crawfishcloud` is a crawler of cloud buckets.
+
+Logo credit: deepart.io
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
