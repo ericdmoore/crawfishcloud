@@ -10,10 +10,11 @@
 -->
 
 [![GH CI][github-action-(build/test)-shield]][github-action-(build/test)-url]
+
 [![NPM Version][npm-version-shield]][npm-version-url]
 [![Pkg Size][size-shield]][size-url]
 [![Code Coverage][coveralls-sheild]][coveralls-url]
-[![CDDL-1.0 License][license-shield]][license-url]
+[![MIT License][license-shield]][license-url]
 
 [![Github Activity][gh-commit-activity-shield]][gh-commit-activity-url]
 [![Issues Closed ][github-issues-closed-shield]][github-issues-closed-url]
@@ -29,7 +30,7 @@
 
 ## Install
 
-[`npm i crawfishcloud`](//npm.im/crawfishcloud)
+[`npm i crawfishcloud -S`](//npm.im/crawfishcloud)
 
 ## Setup
 
@@ -44,54 +45,65 @@ const crawfish = crawler({s3:new S3({creds})})
 
 ## Usage
 
-### Stream< Vfile | Vinyl >
+##### Async Generator
 
 ```js
-crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
-```
-
-### Async Iterator
-
-```js
-for await (const vf of crawfish({s3c}).iter({using: asVfile}, 's3://Bucket/path/*.jpg')){
+for await (const vf of crawfish({s3c}).vfileIter('s3://Bucket/path/*.jpg')){
   console.log({vf})
 }
 ```
 
-### Promise<Arrray<Vfile | Vinyl>>
+##### Promise<Arrray<Vfile | Vinyl>>
 
 ```js
 const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 ```
 
+##### Stream< Vfile | Vinyl >
+
+```js
+crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
+```
+
+## Why use Crawfishcloud?
+
+## Features
+
+## Related
+
+
 ## API Reference 
 
-1. [crawler (s3c, body, maxkeys, ...filters) : crawfishcloud](#crawler)
-1. Base Functions
-    1. [iter (i:{body, using, NextContinuationToken}, ...filters) : AsyncGenerator](#iter)
-    1. [stream (i:{body, using}, ...filters) : Readable](#stream)
-    1. [all (i:{body, using}, ...filters) : Promise<T[]>](#all)
-1. Readable Node Stream Family
-    1. [vfileStream ( ...filters) : Readable](#vfileStream)
-    1. [vinylStream (...filters) : Readable](#vinylStream)
-    1. [s3Stream (...filters) : Readable](#s3Stream)
-1. AsynGenerator Family
-    1. [vfileIter ( ...filters) : AsyncGenerator](#vfileIter)
-    1. [vinylIter (...filters) : AsyncGenerator](#vinylIter)
-    1. [s3Iter (...filters) : AsyncGenerator](#s3Iter)
-1. Array Family
-    1. [vfileArray ( ...filters) : Promise<VFile[]>](#vfileArray)
-    1. [vinylArray (...filters) : Promise<Vinyl[]>](#vinylArray)
-    1. [s3Array ( ...filters) : Promise<S3Item[]>](#s3Array)
-1. Exporting Functions
-    1. [asVfile (i:S3Item) => Vfile](#asVfile)
-    1. [asVinyl (i:S3Item) => Vinyl](#asVinyl)
-    1. [asS3 (i:S3Item) => S3Item](#asS3)
+<details>
+    <summary>Table Of Contents</summary>
 
+- [crawler (s3c, body, maxkeys, ...filters) : crawfishcloud](#crawler)
+- Base Functions
+    - [iter (i:{body, using, NextContinuationToken}, ...filters) : AsyncGenerator](#iter)
+    - [stream (i:{body, using}, ...filters) : Readable](#stream)
+    - [all (i:{body, using}, ...filters) : Promise<T[]>](#all)
+- Readable Node Streams
+    - [vfileStream ( ...filters) : Readable](#vfileStream)
+    - [vinylStream (...filters) : Readable](#vinylStream)
+    - [s3Stream (...filters) : Readable](#s3Stream)
+- AsynGenerators
+    - [vfileIter ( ...filters) : AsyncGenerator](#vfileIter)
+    - [vinylIter (...filters) : AsyncGenerator](#vinylIter)
+    - [s3Iter (...filters) : AsyncGenerator](#s3Iter)
+- Promised Arrays
+    - [vfileArray ( ...filters) : Promise<VFile[]>](#vfileArray)
+    - [vinylArray (...filters) : Promise<Vinyl[]>](#vinylArray)
+    - [s3Array ( ...filters) : Promise<S3Item[]>](#s3Array)
+- Exporting Functions
+    - [asVfile (i:S3Item) => Vfile](#asVfile)
+    - [asVinyl (i:S3Item) => Vinyl](#asVinyl)
+    - [asS3 (i:S3Item) => S3Item](#asS3)
+
+</details>
 
 ### [crawler()](https://ericdmoore.github.io/crawfishcloud/modules.html#crawler)
 
-> `function` default export "aka: crawler"
+> the default export function "aka: crawler"
 
 - `params`
 
@@ -134,6 +146,17 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
   - Readable
 
+- <details>
+    <summary>example</summary>
+    
+    ```js
+    const mdStream = crawler({s3c})
+                    .stream({ using: asVinyl },
+                            's3://Bucket/pref/**/*.md')
+    mdStream.pipe(gulp.dest('/public'))
+    ```
+    </details>
+<br/>
 
 ### **[all()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#all)**
 
@@ -151,7 +174,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 
 
 
-### > *Stream Returns* 
+### > *Streams* 
 
 ### **[vfileStream()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vfilestream)**
 
@@ -190,7 +213,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     - `Readable`
 
 
-### > *AsyncGenerator Returns* 
+### > *AsyncGenerators* 
 
 ### **[vfileIter()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vfileiter)**
 
@@ -231,7 +254,7 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
     - `AsyncGenerator<S3Item, void, undefined>`
 
 
-### > *Array Returns Promise<T[]>* 
+### > *Promised Arrays* 
 
 ### **[vfileArray()](https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vfilearray)**
 
@@ -354,3 +377,63 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 [gh-commit-activity-shield]:https://img.shields.io/github/commit-activity/m/ericdmoore/crawfishcloud?style=for-the-badge
 
 
+<!-- 
+
+<ol>crawler</ol>    
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+    <ol>Base Functions</ol>
+        <ul>
+            <a href="#iter">
+            iter (i:{body, using, NextContinuationToken}, ...filters) => AsyncGenerator</a>
+        <ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+    <ol>Readable Node Streams</ol>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+    <ol>AsynGenerators</ol>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>   
+    <ol>PromisedArrays</ol>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>
+        <ul>
+            <a href="#">
+            </a>
+        </ul>   
+
+-->

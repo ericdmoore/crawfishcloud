@@ -28,9 +28,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build:check
-    - name: Run Tests with ENV VARs
-      run: npm test
+    - name: Tests
       env:
-          HELLO: ${{ secrets.HELLO }}
-          PERSONAL_DEFAULT_AWS_KEY: ${{ secrets.PERSONAL_DEFAULT_AWS_KEY }}
-          PERSONAL_DEFAULT_AWS_SECRET: ${{ secrets.PERSONAL_DEFAULT_AWS_SECRET }}
+        PERSONAL_DEFAULT_AWS_KEY: ${{ secrets.PERSONAL_DEFAULT_AWS_KEY }}
+        PERSONAL_DEFAULT_AWS_SECRET: ${{ secrets.PERSONAL_DEFAULT_AWS_SECRET }}
+      run: npm test
+    - name: Codecov
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: npm run codecov -- --token=$CODECOV_TOKEN
+          
