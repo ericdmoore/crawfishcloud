@@ -1,6 +1,6 @@
 {
   "name": "crawfishcloud",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A Streaming S3 Bucket Glob Crawler",
   "--type": "module",
   "main": "./build/_/index.mjs",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "codecov":"codecov",
+    "codecov": "codecov",
     "docs": "typedoc src/index.ts",
     "prep": "echo 'npm test; npm run docs; npm run build:esb'",
     "np:prep": "npm run build; npm run docs",
