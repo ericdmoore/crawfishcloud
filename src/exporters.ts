@@ -8,10 +8,10 @@ import Vinyl from 'vinyl'
 export const drainReadable = (init:string , r: Readable, tail:string):Promise<string>=>{
     const acc: string[]  = [init]
     return new Promise((resolve, reject)=>{
-        r.on('data',(chunk) => {acc.push(chunk.toString())})
-        .on('close',() => resolve(`${acc.join('')}${tail}` as string))
+        r
+        .on('data',(chunk) => {acc.push(chunk.toString())})
+        .on('end',() => resolve(`${ acc.join('') }${tail}` as string))
         .on('error',(er) => reject(er))
-       return ''
     })
 }
 

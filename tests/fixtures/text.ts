@@ -39,4 +39,3 @@ Cras euismod vestibulum nisi, sit amet congue dolor tempor quis.
 In id sapien maximus justo ultricies tincidunt a vestibulum sapien. 
 Vivamus volutpat semper tortor quis facilisis.
 `
-export const len = text.length

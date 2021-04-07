@@ -1,19 +1,22 @@
 import { Readable } from 'stream'
 import { createReadStream } from 'fs'
+import { resolve } from 'path'
 import { drainReadable } from "../../src/exporters"
-import {text, len} from '../fixtures/text'
+import {text} from '../fixtures/text'
 
 test('read stream - and drain into a string.1 ',async ()=>{
-    const r = createReadStream('../fixtures/text.ts')
-    const resultString = await drainReadable('::start::',r,'::end::')
+    const r = createReadStream(resolve(__dirname, '../fixtures/text.ts'))
+    const resultString = await drainReadable('::start::', r ,'::end::')
     expect(resultString.startsWith('::start::')).toBe(true)
     expect(resultString.endsWith('::end::')).toBe(true)
-    expect(resultString).toHaveLength(len + '::start::'.length + '::end::'.length)
+    // cant do len compare due to ts syntax terms `export const text = '<>'`
 })
 
-test('read stream - and drain into a string.1 ',async ()=>{
-    const resultString = await drainReadable('::start::',Readable.from(text),'::end::')
+test('read stream - and drain into a string.2 ',async ()=>{ 
+    const bumperTextLen = '::start::'.length + '::end::'.length
+    const resultString = await drainReadable('::start::',Readable.from(text),'::end::')    
+    
     expect(resultString.startsWith('::start::')).toBe(true)
     expect(resultString.endsWith('::end::')).toBe(true)
-    expect(resultString).toHaveLength(len + '::start::'.length + '::end::'.length)
-})
+    expect(resultString).toHaveLength(text.length + bumperTextLen)
+},10*1000)
