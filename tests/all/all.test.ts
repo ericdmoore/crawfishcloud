@@ -1,8 +1,7 @@
 /* globals test, expect */
-
+import type * as k from '../../src/types'
 import crawler from "../../src/index"
 import s3c from '../aws'
-import type * as k from '../../src/types'
 
 const TIMEOUT = 40 * 1000
 

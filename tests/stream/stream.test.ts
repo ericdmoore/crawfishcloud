@@ -1,9 +1,7 @@
+import type  * as k from '../../src/types'
+import {Writable} from 'stream'
 import crawler from "../../src/index"
 import s3c from '../aws'
-
-import * as k from '../../src/types'
-import {Writable} from 'stream'
-
 
 const TIMEOUT = 40 * 1000
 
