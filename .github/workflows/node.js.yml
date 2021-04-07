@@ -28,6 +28,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build:check
+    - run: echo $HELLO > file.txt ; cat file.txt
+      env:
+          HELLO: ${{ secrets.HELLO }}
     - name: Run Tests with ENV VARs
       run: npm test
       env:
