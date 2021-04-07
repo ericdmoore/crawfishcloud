@@ -1,13 +1,13 @@
 {
   "name": "crawfishcloud",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A Streaming S3 Bucket Glob Crawler",
   "--type": "module",
   "main": "./build/_/index.mjs",
   "exports": {
     ".": {
       "require": "./build/cjs/index.js",
-      "import":  "./build/es/index.js"
+      "import": "./build/es/index.js"
     }
   },
   "types": "./src/index.ts",
