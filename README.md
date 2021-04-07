@@ -85,7 +85,18 @@ Now you can.
     - Node Streams are incredible if you are familiar with them. The `.stream()` pattern allows you to stream out a set of obejcts to your down stream processing.
 - AsyncGenerators
     - For many people, although Async Generators are a newer addition to the language, it will strike a sweet spot of "ease of use" and still being able to process terribly large amounts of data. since its pulled from the network on demand.
+- Uses Modern Syntax
+- async/ await
+- All in about 230 lines of js code (crawfish + utils + builtin-exporters)
 
+## Inspired By
+
+- [s3-glob](https://github.com/izaakschroeder/s3-glob)
+- [node-s3glob](https://github.com/RallySoftware/node-s3glob)
+
+## License
+
+MIT Eric D Moore MIT 
 
 ## API Reference 
 
