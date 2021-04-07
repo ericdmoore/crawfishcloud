@@ -1,4 +1,11 @@
+[![GH CI][github-action-(build/test)-shield]][github-action-(build/test)-url]
+[![codecov][code-test-coverage-shield]][code-test-coverage-url]
+
+![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds][project-pic]
+
 # crawfishcloud
+
+> A Streaming S3 Bucket Glob Crawler
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -8,9 +15,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Contributors][contributors-shield]][contributors-url]
 -->
-
-[![GH CI][github-action-(build/test)-shield]][github-action-(build/test)-url]
-[![codecov][code-test-coverage-shield]][code-test-coverage-url]
 
 [![NPM Version][npm-version-shield]][npm-version-url]
 [![Pkg Size][size-shield]][size-url]
@@ -24,11 +28,7 @@
 <!-- [![Winter Is Coming][ftb-winter-shield]][ftb-winter-url] -->
 <!-- [![Built With][ftb-builtWith-shield]][federalies-url] -->
 
-> A Streaming S3 Bucket Glob Crawler
-
-![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds][project-pic]
-
-`crawfishcloud` makes it VERY easy to get started pulling globbed files from S3.
+`crawfishcloud` makes it VERY easy to get started pulling globbed files from S3. It gives you the power to 
 
 ## Install
 
@@ -100,17 +100,18 @@ Now you can.
 
 ## Features
 
-`crawfishcloud` supports 3 different processing patterns to handle data from your buckets.
-
-- Promised Arrays
-    - While this structure is admittedly the most straight forward, it can also blow through your RAM because collapsing an S3 stream to one array can often take more space than is commericial available for RAM. Sure, maybe you are thinking "I know my data, and I just need the 5 files loaded together from this s3 prefix, and I know it will fit" - then the `array pattern` is just the ticket.
-- Node Streams
-    - Node Streams are incredible if you are familiar with them. The `.stream()` pattern allows you to stream out a set of obejcts to your down stream processing.
-- AsyncGenerators
-    - For many people, although Async Generators are a newer addition to the language, it will strike a sweet spot of "ease of use" and still being able to process terribly large amounts of data. since its pulled from the network on demand.
 - Uses Modern Syntax
 - async/ await
 - All in about 230 lines of js code sread over about 3 files.
+- Plays nice with Typescript
+- `crawfishcloud` supports 3 different processing patterns to handle data from your buckets.
+    - *[Promised Arrays](#-promised-arrays)*
+        - While this structure is admittedly the most straight forward, it can also blow through your RAM because collapsing an S3 stream to one array can often take more space than is commericial available for RAM. Sure, maybe you are thinking "I know my data, and I just need the 5 files loaded together from this s3 prefix, and I know it will fit" - then the `array pattern` is just the ticket.
+    - *[Node Streams](#-streams)*
+        - Node Streams are incredible if you are familiar with them. The `.stream()` pattern allows you to stream out a set of obejcts to your down stream processing.
+    - *[AsyncGenerators](#-asyncgenerators)*
+        - For many people, although Async Generators are a newer addition to the language, it will strike a sweet spot of "ease of use" and still being able to process terribly large amounts of data. since its pulled from the network on demand.
+
 
 ## Contributions
 

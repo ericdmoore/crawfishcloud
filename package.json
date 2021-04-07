@@ -23,7 +23,7 @@
     "test": "jest --coverage",
     "codecov": "codecov",
     "docs": "typedoc src/index.ts",
-    "np:prep": "npm run build",
+    "np:prep": "npm run clear:build; npm run build:tsc",
     "np": "npm run np:prep; np",
     "clear:build": "rm -rf build/; mkdir -p build/_; mkdir -p build/es; mkdir -p build/cjs",
     "lint": "eslint src/index.ts src/crawfishcloud.ts --fix",
