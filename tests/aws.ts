@@ -14,8 +14,9 @@ const credentials = (key && secret)
 if(key && secret){
     // CI ENV
     console.log('...using ENV VARS')
-    console.log('mesage for the ', process.env?.HELLO)
-    console.log( JSON.stringify( process.env?.HELLO, null, 2))
+    console.log(`Oh, why hello there ol' beautiful ${(process.env?.HELLO || '').toUpperCase()}!, this mesage was for you` )
+    console.log(`${(process.env?.HELLO || '').split('')}`)
+    // console.log( JSON.stringify( process.env?.HELLO, null, 2))
 } else{
     // Local 
     console.log('...using AWS Cred file')
