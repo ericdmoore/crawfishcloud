@@ -539,7 +539,8 @@ Now you can.
 > turn an S3 object into a vfile
 
 - `params`
-    - i : `S3Item`
+    - s3i : `S3Item`
+    - i : `number`
 
 - `returns`
     - `Vfile`
@@ -566,7 +567,8 @@ Now you can.
 > turn an S3 object into a vinyl
 
 - `params`
-    - i : `S3Item`
+    - s3i : `S3Item`
+    - i : `number`
 - `returns`
     - `Vinyl`
 - <details>
@@ -591,7 +593,8 @@ Now you can.
 > Just pass the S3 object structure along
 
 - `params`
-    - i : `S3Item`
+    - s3i : `S3Item`
+    - i : `number`
 - `returns`
     - `S3Item`
 - <details>
