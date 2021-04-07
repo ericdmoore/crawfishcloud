@@ -1,7 +1,5 @@
 import crawler from "../../src/index"
-import {S3, SharedIniFileCredentials} from 'aws-sdk'
-const credentials = new SharedIniFileCredentials({profile:'personal_default'})
-const s3c = new S3({credentials, region:'us-west-2'})
+import s3c from '../aws'
 
 import * as k from '../../src/types'
 import {Writable} from 'stream'
@@ -9,7 +7,7 @@ import {Writable} from 'stream'
 
 const TIMEOUT = 40 * 1000
 
-const dest = ( name:string, printCond: ()=>boolean = ()=>false, verbose:boolean = false,  ) => { 
+const dest = ( name:string, printCond: ()=>boolean = ()=>false, verbose = false,  ) => { 
     const list = [] as unknown[]
     const getCount = () => list.length
     const setPrintCond = (input:()=>boolean = ()=>false) => {printCond = input}

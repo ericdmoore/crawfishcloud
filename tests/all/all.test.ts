@@ -1,12 +1,8 @@
 /* globals test, expect */
 
-import * as k from '../../src/types'
-//
 import crawler from "../../src/index"
-
-import {S3, SharedIniFileCredentials} from 'aws-sdk'
-const credentials = new SharedIniFileCredentials({profile:'personal_default'})
-const s3c = new S3({credentials, region:'us-west-2'})
+import s3c from '../aws'
+import type * as k from '../../src/types'
 
 const TIMEOUT = 40 * 1000
 

@@ -1,9 +1,6 @@
 /* globals test */
 import crawler, {asS3} from "../../src/index"
-
-import {S3, SharedIniFileCredentials} from 'aws-sdk'
-const credentials = new SharedIniFileCredentials({profile:'personal_default'})
-const s3c = new S3({credentials, region:'us-west-2'})
+import s3c from '../aws'
 
 const TIMEOUT = 40 * 1000
 

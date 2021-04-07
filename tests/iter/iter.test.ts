@@ -1,4 +1,6 @@
 /* globals test */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import crawler, {asS3} from "../../src/index"
 
 import {S3, SharedIniFileCredentials} from 'aws-sdk'
