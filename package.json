@@ -28,7 +28,7 @@
     "clear:build": "rm -rf build/; mkdir -p build/_",
     "lint": "eslint src/index.ts src/crawfishcloud.ts --fix",
     "build": "npm run clear:build; npm run build:esb",
-    "build:tsc": "npm run clear:build; tsc",
+    "build:tsc": "npm run clear:build; tsc ; rm -r build/*.map ; rm build/tsconfig.tsbuildinfo ",
     "build:esb": "npm run clear:build ; npm run build:esb_esm ; npm run build:esb_cjs ; npm run build:esb_mincjs ; npm run build:esb_minesm",
     "build:esb_esm": "esbuild src/index.ts        --format=esm --target=node12 --platform=node --bundle > build/_/index.mjs",
     "build:esb_minesm": "esbuild src/index.ts     --format=esm --target=node12 --platform=node --bundle --minify > build/_/index.min.mjs",

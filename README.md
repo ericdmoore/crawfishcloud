@@ -42,7 +42,7 @@
 <details>
     <summary> <b>TOC</b> </summary> 
 
-- [Instal](#install)
+- [Install](#install)
 - [Setup](#setup)
 - [Usage](#usage)
 - [Why `crawfishcloud`](#why-use-crawfishcloud)
@@ -50,7 +50,7 @@
 - [Contributions](#contributions)
 - [Inspiration](#inspired-by)
 - [License](#license)
-- [API Reference](#api-Reference)
+- [API Reference](#api-reference)
 
 </details>
 <br/>
