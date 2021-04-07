@@ -14,7 +14,6 @@
 
 [![NPM Version][npm-version-shield]][npm-version-url]
 [![Pkg Size][size-shield]][size-url]
-
 [![MIT License][license-shield]][license-url]
 
 [![Github Activity][gh-commit-activity-shield]][gh-commit-activity-url]
@@ -36,11 +35,15 @@
 ## Setup
 
 ```js
-import crawler, {asVfile} from 'crawfishcloud'
-import {S3, SharedIniFileCredentials} from 'aws-sdk'
+// import or require
+import {crawler, asVfile} from 'crawfishcloud'
 
-const creds = new SharedCredentials({profile: 'default'})
-const crawfish = crawler({s3:new S3({creds})})
+// Setiup AWS-S3 with your credentials
+import {S3, SharedIniFileCredentials} from 'aws-sdk'
+const credentials = new SharedIniFileCredentials({profile: 'default'})
+
+// crawfish uses your configured S3 Client to get Data from S3
+const crawfish = crawler({s3c: new S3({credentials})})
 
 ```
 
@@ -49,7 +52,7 @@ const crawfish = crawler({s3:new S3({creds})})
 ##### Async Generator
 
 ```js
-for await (const vf of crawfish({s3c}).vfileIter('s3://Bucket/path/*.jpg')){
+for await (const vf of crawler({s3c}).vfileIter('s3://Bucket/path/*.jpg')){
   console.log({vf})
 }
 ```
@@ -57,13 +60,13 @@ for await (const vf of crawfish({s3c}).vfileIter('s3://Bucket/path/*.jpg')){
 ##### Promise<Arrray<Vfile | Vinyl>>
 
 ```js
-const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
+const allJpgs = await crawler({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 ```
 
 ##### Stream< Vfile | Vinyl >
 
 ```js
-crawfish({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
+crawler({s3c}).vfileStream('/prefix/**/*.jpg').pipe(destination())
 ```
 
 ## Why use Crawfishcloud?
