@@ -9,6 +9,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 -->
 
+[![GH CI][github-action-(build/test)-shield]][github-action-(build/test)-url]
 [![NPM Version][npm-version-shield]][npm-version-url]
 [![Pkg Size][size-shield]][size-url]
 [![Code Coverage][coveralls-sheild]][coveralls-url]
@@ -343,11 +344,13 @@ const allJpgs = await crawfish({s3c}).vinylArray('s3://Bucket/path/*.jpg')
 [npm-version-url]:https://www.npmjs.com/package/crawfishcloud
 [npm-version-shield]:https://img.shields.io/npm/v/crawfishcloud?style=for-the-badge
 
-[github-action-(build/test)-url]:https://github.com/ericdmoore/crawfishcloud/actions?query=workflow%3A%22Build+%26+Tests%22
-[github-action-(build/test)-shield]:https://github.com/ericdmoore/crawfishcloud/workflows/Build%20&%20Tests/badge.svg
+[github-action-(build/test)-url]:https://github.com/ericdmoore/crawfishcloud/actions/workflows/node.js.yml
+[github-action-(build/test)-shield]:https://github.com/ericdmoore/crawfishcloud/actions/workflows/node.js.yml/badge.svg
 
 [github-issues-closed-url]:https://github.com/ericdmoore/crawfishcloud/issues?q=is%3Aissue+is%3Aclosed+
 [github-issues-closed-shield]:https://img.shields.io/github/issues-closed-raw/ericdmoore/crawfishcloud?style=for-the-badge
 
 [gh-commit-activity-url]:https://github.com/ericdmoore/crawfishcloud/pulse/monthly
 [gh-commit-activity-shield]:https://img.shields.io/github/commit-activity/m/ericdmoore/crawfishcloud?style=for-the-badge
+
+
