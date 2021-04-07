@@ -31,5 +31,6 @@ jobs:
     - name: Run Tests with ENV VARs
       run: npm test
       env:
+          HELLO: ${{ secrets.HELLO }}
           PERSONAL_DEFAULT_AWS_KEY: ${{ secrets.PERSONAL_DEFAULT_AWS_KEY }}
           PERSONAL_DEFAULT_AWS_SECRET: ${{ secrets.PERSONAL_DEFAULT_AWS_SECRET }}
