@@ -42,7 +42,7 @@ import {crawler, asVfile} from 'crawfishcloud'
 import {S3, SharedIniFileCredentials} from 'aws-sdk'
 const credentials = new SharedIniFileCredentials({profile: 'default'})
 
-// crawfish uses your configured S3 Client to get Data from S3
+// crawfish uses your configured S3 Client to get data from S3
 const crawfish = crawler({s3c: new S3({credentials})})
 
 ```
@@ -77,7 +77,7 @@ Now you can.
 
 ## Features
 
-`crawfishcloud` supports 3 different modes of processing your streaming data.
+`crawfishcloud` supports 3 different processing patterns to handle data from your buckets.
 
 - Promised Arrays
     - While this structure is admittedly the most straight forward, it can also blow through your RAM because collapsing an S3 stream to one array can often take more space than is commericial available for RAM. Sure, maybe you are thinking "I know my data, and I just need the 5 files loaded together from this s3 prefix, and I know it will fit" - then the `array pattern` is just the ticket.
