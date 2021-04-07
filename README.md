@@ -28,23 +28,46 @@
 
 ![Deep Learning AI Generated Psychadelic Style Transfer Art of Crawfish painted with sunset clouds][project-pic]
 
+`crawfishcloud` makes it VERY easy to get started pulling globbed files from S3.
+
 ## Install
 
 [`npm i crawfishcloud -S`](//npm.im/crawfishcloud)
 
+<br/>
+<br/>
+
+## Table of Contents
+
+<details>
+    <summary> <b>TOC</b> </summary> 
+
+- [Instal](#install)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Why `crawfishcloud`](#why-use-crawfishcloud)
+- [Feature Overview](#features)
+- [Contributions](#contributions)
+- [Inspiration](#inspired-by)
+- [License](#license)
+- [API Reference](#api-Reference)
+
+</details>
+<br/>
+<br/>
+
 ## Setup
 
 ```js
-// import or require
+// supports BOTH import and require 
 import {crawler, asVfile} from 'crawfishcloud'
 
-// Setiup AWS-S3 with your credentials
+// Setup AWS-S3 with your credentials
 import {S3, SharedIniFileCredentials} from 'aws-sdk'
 const credentials = new SharedIniFileCredentials({profile: 'default'})
 
 // crawfish uses your configured S3 Client to get data from S3
 const crawfish = crawler({s3c: new S3({credentials})})
-
 ```
 
 ## Usage
@@ -87,16 +110,22 @@ Now you can.
     - For many people, although Async Generators are a newer addition to the language, it will strike a sweet spot of "ease of use" and still being able to process terribly large amounts of data. since its pulled from the network on demand.
 - Uses Modern Syntax
 - async/ await
-- All in about 230 lines of js code (crawfish + utils + builtin-exporters)
+- All in about 230 lines of js code sread over about 3 files.
+
+## Contributions
+
+Pull requests welcome. Drop me a line in the Discussion area - or submit an issue.
 
 ## Inspired By
 
 - [s3-glob](https://github.com/izaakschroeder/s3-glob)
 - [node-s3glob](https://github.com/RallySoftware/node-s3glob)
 
+I was about to use one of those - except "before marrying an old lady" - I thought I would see if I realy understood these before taking on caring for an old lady, and by the time I understood I had opinions which are now roughly manifest through out the package.
+
 ## License
 
-MIT Eric D Moore MIT 
+[MIT](./LICENSE) © Eric D Moore
 
 ## API Reference 
 
