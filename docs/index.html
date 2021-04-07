@@ -69,10 +69,11 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![Contributors][contributors-shield]][contributors-url]
 -->
+				<p><a href="https://github.com/ericdmoore/crawfishcloud/actions/workflows/node.js.yml"><img src="https://github.com/ericdmoore/crawfishcloud/actions/workflows/node.js.yml/badge.svg" alt="GH CI"></a>
+				<a href="https://codecov.io/gh/ericdmoore/crawfishcloud"><img src="https://codecov.io/gh/ericdmoore/crawfishcloud/branch/main/graph/badge.svg?token=HG4ZLG6E7H" alt="codecov"></a></p>
 				<p><a href="https://www.npmjs.com/package/crawfishcloud"><img src="https://img.shields.io/npm/v/crawfishcloud?style=for-the-badge" alt="NPM Version"></a>
 					<a href="https://bundlephobia.com/result?p=crawfishcloud"><img src="https://img.shields.io/bundlephobia/minzip/crawfishcloud?style=for-the-badge" alt="Pkg Size"></a>
-					<a href="https://coveralls.io/github/ericdmoore/crawfishcloud"><img src="https://img.shields.io/coveralls/github/ericdmoore/crawfishcloud?style=for-the-badge" alt="Code Coverage"></a>
-				<a href="https://github.com/ericdmoore/crawfishcloud/blob/master/LICENSE"><img src="https://img.shields.io/github/license/ericdmoore/crawfishcloud?style=for-the-badge" alt="CDDL-1.0 License"></a></p>
+				<a href="https://github.com/ericdmoore/crawfishcloud/blob/master/LICENSE"><img src="https://img.shields.io/github/license/ericdmoore/crawfishcloud?style=for-the-badge" alt="MIT License"></a></p>
 				<p><a href="https://github.com/ericdmoore/crawfishcloud/pulse/monthly"><img src="https://img.shields.io/github/commit-activity/m/ericdmoore/crawfishcloud?style=for-the-badge" alt="Github Activity"></a>
 					<a href="https://github.com/ericdmoore/crawfishcloud/issues?q=is%3Aissue+is%3Aclosed+"><img src="https://img.shields.io/github/issues-closed-raw/ericdmoore/crawfishcloud?style=for-the-badge" alt="Issues Closed "></a>
 				<a href="https://github.com/ericdmoore/crawfishcloud/issues"><img src="https://img.shields.io/github/issues/ericdmoore/crawfishcloud?style=for-the-badge" alt="Issues"></a></p>
@@ -86,78 +87,108 @@
 				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 					<h2>Install</h2>
 				</a>
-				<p><a href="//npm.im/crawfishcloud"><code>npm i crawfishcloud</code></a></p>
+				<p><a href="//npm.im/crawfishcloud"><code>npm i crawfishcloud -S</code></a></p>
 				<a href="#setup" id="setup" style="color: inherit; text-decoration: none;">
 					<h2>Setup</h2>
 				</a>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">crawler</span><span style="color: #000000">, {</span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+				<pre><code class="language-js"><span style="color: #008000">// import or require</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">crawler</span><span style="color: #000000">, </span><span style="color: #001080">asVfile</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;crawfishcloud&#039;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">creds</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crawfish</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3:</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">creds</span><span style="color: #000000">})})</span>
+<span style="color: #008000">// Setiup AWS-S3 with your credentials</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">S3</span><span style="color: #000000">, </span><span style="color: #001080">SharedIniFileCredentials</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;aws-sdk&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">credentials</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SharedIniFileCredentials</span><span style="color: #000000">({</span><span style="color: #001080">profile:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #008000">// crawfish uses your configured S3 Client to get Data from S3</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">crawfish</span><span style="color: #000000"> = </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">S3</span><span style="color: #000000">({</span><span style="color: #001080">credentials</span><span style="color: #000000">})})</span>
 
 </code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<a href="#streamlt-vfile--vinyl-gt" id="streamlt-vfile--vinyl-gt" style="color: inherit; text-decoration: none;">
-					<h3>Stream&lt; Vfile | Vinyl &gt;</h3>
+				<a href="#async-generator" id="async-generator" style="color: inherit; text-decoration: none;">
+					<h5>Async Generator</h5>
 				</a>
-				<pre><code class="language-js"><span style="color: #795E26">crawfish</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">vfileStream</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/prefix/**/*.jpg&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">destination</span><span style="color: #000000">())</span>
-</code></pre>
-				<a href="#async-iterator" id="async-iterator" style="color: inherit; text-decoration: none;">
-					<h3>Async Iterator</h3>
-				</a>
-				<pre><code class="language-js"><span style="color: #AF00DB">for</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> (</span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">vf</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #795E26">crawfish</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">iter</span><span style="color: #000000">({</span><span style="color: #001080">using:</span><span style="color: #000000"> </span><span style="color: #001080">asVfile</span><span style="color: #000000">}, </span><span style="color: #A31515">&#039;s3://Bucket/path/*.jpg&#039;</span><span style="color: #000000">)){</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">for</span><span style="color: #000000"> </span><span style="color: #AF00DB">await</span><span style="color: #000000"> (</span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">vf</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">vfileIter</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://Bucket/path/*.jpg&#039;</span><span style="color: #000000">)){</span>
 <span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">({</span><span style="color: #001080">vf</span><span style="color: #000000">})</span>
 <span style="color: #000000">}</span>
 </code></pre>
 				<a href="#promiseltarrrayltvfile--vinylgtgt" id="promiseltarrrayltvfile--vinylgtgt" style="color: inherit; text-decoration: none;">
-					<h3>Promise&lt;Arrray&lt;Vfile | Vinyl&gt;&gt;</h3>
+					<h5>Promise&lt;Arrray&lt;Vfile | Vinyl&gt;&gt;</h5>
 				</a>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">allJpgs</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">crawfish</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">vinylArray</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://Bucket/path/*.jpg&#039;</span><span style="color: #000000">)</span>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">allJpgs</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">vinylArray</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;s3://Bucket/path/*.jpg&#039;</span><span style="color: #000000">)</span>
 </code></pre>
+				<a href="#streamlt-vfile--vinyl-gt" id="streamlt-vfile--vinyl-gt" style="color: inherit; text-decoration: none;">
+					<h5>Stream&lt; Vfile | Vinyl &gt;</h5>
+				</a>
+				<pre><code class="language-js"><span style="color: #795E26">crawler</span><span style="color: #000000">({</span><span style="color: #001080">s3c</span><span style="color: #000000">}).</span><span style="color: #795E26">vfileStream</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;/prefix/**/*.jpg&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #795E26">destination</span><span style="color: #000000">())</span>
+</code></pre>
+				<a href="#why-use-crawfishcloud" id="why-use-crawfishcloud" style="color: inherit; text-decoration: none;">
+					<h2>Why use Crawfishcloud?</h2>
+				</a>
+				<p>Ever had a set of files in S3 and you are thinking &quot;Why can&#39;t I use a glob pattern like I would in a unix command, or in gulp, and pull all of those files out together?&quot;</p>
+				<p>Now you can.</p>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<p><code>crawfishcloud</code> supports 3 different modes of processing your streaming data.</p>
+				<ul>
+					<li>Promised Arrays<ul>
+							<li>While this structure is admittedly the most straight forward, it can also blow through your RAM because collapsing an S3 stream to one array can often take more space than is commericial available for RAM. Sure, maybe you are thinking &quot;I know my data, and I just need the 5 files loaded together from this s3 prefix, and I know it will fit&quot; - then the <code>array pattern</code> is just the ticket.</li>
+						</ul>
+					</li>
+					<li>Node Streams<ul>
+							<li>Node Streams are incredible if you are familiar with them. The <code>.stream()</code> pattern allows you to stream out a set of obejcts to your down stream processing.</li>
+						</ul>
+					</li>
+					<li>AsyncGenerators<ul>
+							<li>For many people, although Async Generators are a newer addition to the language, it will strike a sweet spot of &quot;ease of use&quot; and still being able to process terribly large amounts of data. since its pulled from the network on demand.</li>
+						</ul>
+					</li>
+				</ul>
 				<a href="#api-reference" id="api-reference" style="color: inherit; text-decoration: none;">
 					<h2>API Reference</h2>
 				</a>
-				<ol>
-					<li><a href="#crawler">crawler (s3c, body, maxkeys, ...filters) : crawfishcloud</a></li>
-					<li>Base Functions<ol>
-							<li><a href="#iter">iter (i:{body, using, NextContinuationToken}, ...filters) : AsyncGenerator</a></li>
-							<li><a href="#stream">stream (i:{body, using}, ...filters) : Readable</a></li>
-							<li><a href="#all">all (i:{body, using}, ...filters) : Promise&lt;T[]&gt;</a></li>
-						</ol>
-					</li>
-					<li>Readable Node Stream Family<ol>
-							<li><a href="#vfileStream">vfileStream ( ...filters) : Readable</a></li>
-							<li><a href="#vinylStream">vinylStream (...filters) : Readable</a></li>
-							<li><a href="#s3Stream">s3Stream (...filters) : Readable</a></li>
-						</ol>
-					</li>
-					<li>AsynGenerator Family<ol>
-							<li><a href="#vfileIter">vfileIter ( ...filters) : AsyncGenerator</a></li>
-							<li><a href="#vinylIter">vinylIter (...filters) : AsyncGenerator</a></li>
-							<li><a href="#s3Iter">s3Iter (...filters) : AsyncGenerator</a></li>
-						</ol>
-					</li>
-					<li>Array Family<ol>
-							<li><a href="#vfileArray">vfileArray ( ...filters) : Promise&lt;VFile[]&gt;</a></li>
-							<li><a href="#vinylArray">vinylArray (...filters) : Promise&lt;Vinyl[]&gt;</a></li>
-							<li><a href="#s3Array">s3Array ( ...filters) : Promise&lt;S3Item[]&gt;</a></li>
-						</ol>
-					</li>
-					<li>Exporting Functions<ol>
-							<li><a href="#asVfile">asVfile (i:S3Item) =&gt; Vfile</a></li>
-							<li><a href="#asVinyl">asVinyl (i:S3Item) =&gt; Vinyl</a></li>
-							<li><a href="#asS3">asS3 (i:S3Item) =&gt; S3Item</a></li>
-						</ol>
-					</li>
-				</ol>
+				<details>
+					<summary>Table Of Contents</summary>
+					<ul>
+						<li><a href="#crawler">crawler (s3c, body, maxkeys, ...filters) : crawfishcloud</a></li>
+						<li>Base Functions<ul>
+								<li><a href="#iter">iter (i:{body, using, NextContinuationToken}, ...filters) : AsyncGenerator</a></li>
+								<li><a href="#stream">stream (i:{body, using}, ...filters) : Readable</a></li>
+								<li><a href="#all">all (i:{body, using}, ...filters) : Promise&lt;T[]&gt;</a></li>
+							</ul>
+						</li>
+						<li>Readable Node Streams<ul>
+								<li><a href="#vfileStream">vfileStream ( ...filters) : Readable</a></li>
+								<li><a href="#vinylStream">vinylStream (...filters) : Readable</a></li>
+								<li><a href="#s3Stream">s3Stream (...filters) : Readable</a></li>
+							</ul>
+						</li>
+						<li>AsynGenerators<ul>
+								<li><a href="#vfileIter">vfileIter ( ...filters) : AsyncGenerator</a></li>
+								<li><a href="#vinylIter">vinylIter (...filters) : AsyncGenerator</a></li>
+								<li><a href="#s3Iter">s3Iter (...filters) : AsyncGenerator</a></li>
+							</ul>
+						</li>
+						<li>Promised Arrays<ul>
+								<li><a href="#vfileArray">vfileArray ( ...filters) : Promise&lt;VFile[]&gt;</a></li>
+								<li><a href="#vinylArray">vinylArray (...filters) : Promise&lt;Vinyl[]&gt;</a></li>
+								<li><a href="#s3Array">s3Array ( ...filters) : Promise&lt;S3Item[]&gt;</a></li>
+							</ul>
+						</li>
+						<li>Exporting Functions<ul>
+								<li><a href="#asVfile">asVfile (i:S3Item) =&gt; Vfile</a></li>
+								<li><a href="#asVinyl">asVinyl (i:S3Item) =&gt; Vinyl</a></li>
+								<li><a href="#asS3">asS3 (i:S3Item) =&gt; S3Item</a></li>
+							</ul>
+						</li>
+					</ul>
+				</details>
 				<a href="#crawler" id="crawler" style="color: inherit; text-decoration: none;">
-					<h3>crawler()</h3>
+					<h3><a href="https://ericdmoore.github.io/crawfishcloud/modules.html#crawler">crawler()</a></h3>
 				</a>
 				<blockquote>
-					<p><code>function</code> default export &quot;aka: crawler&quot;</p>
+					<p>the default export function &quot;aka: crawler&quot;</p>
 				</blockquote>
 				<ul>
 					<li><p><code>params</code></p>
@@ -173,12 +204,24 @@
 							<li><code>crawfishcloud</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							<p>  const crab = crawler({s3c}, &#39;s3://ericdmoore.com-images/*.jpg&#39;)
+								const arr = await crab.all({body:true, using: asVfile})
+							```</p>
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#gt-base-returns" id="gt-base-returns" style="color: inherit; text-decoration: none;">
 					<h3>&gt; <em>Base Returns</em></h3>
 				</a>
 				<a href="#iter" id="iter" style="color: inherit; text-decoration: none;">
-					<h3><strong>iter()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#iter">iter()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get an <code>AsyncGenerator&lt;T&gt;</code> ready to use with a <code>for await (){}</code> loop where each elemement is of Type<T> based on the Using Function</p>
@@ -197,9 +240,23 @@
 							<li>AsyncGenerator with elements of type<T> where <code>T</code> is the </li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+							for await (const vf of crab.iter({body:true, using: asVfile}) ){
+							console.log(vf)
+							}
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#stream" id="stream" style="color: inherit; text-decoration: none;">
-					<h3><strong>stream()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#stream">stream()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get a Readable Node Stream ready to pipe to a transform or writable stream</p>
@@ -217,9 +274,23 @@
 							<li>Readable</li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+							crab.stream({body:true, using: asVfile})
+							.pipe(rehypePipe())
+							.pipe(destinationFolder())
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#all" id="all" style="color: inherit; text-decoration: none;">
-					<h3><strong>all()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#all">all()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>load all of the s3 url into an array. Where the array is resolved when all of the elements are populated to the array.</p>
@@ -237,12 +308,57 @@
 							<li><code>Promise&lt;T[]&gt;</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							<p>  const crab = crawler({s3c}, &#39;s3://ericdmoore.com-images/*.jpg&#39;)
+								const arr = await crab.all({body:true, using: asVfile})
+							```</p>
+						</details>
+					<br/></li>
 				</ul>
-				<a href="#gt-stream-returns" id="gt-stream-returns" style="color: inherit; text-decoration: none;">
-					<h3>&gt; <em>Stream Returns</em></h3>
+				<a href="#reduce" id="reduce" style="color: inherit; text-decoration: none;">
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#reduce">reduce()</a></strong></h3>
+				</a>
+				<blockquote>
+					<p>Reduce the files represented in the glob into a new Type. The process batches sets of 1000 elements into memory and reduces.</p>
+				</blockquote>
+				<ul>
+					<li><p><code>params</code></p>
+						<ul>
+							<li>init : <code>&lt;OutputType&gt;</code> - starting value for reducer</li>
+							<li>using : <code>UsingFunc: (i:S3Item)=&gt;&lt;ElementType&gt;</code></li>
+							<li>reducer : <code>(prior:OutputType, current:ElementType, i:number)=&gt;OutputType</code></li>
+							<li>...filters: <code>string[]</code> - will overite any configured filters already given to the crawfish - last filters in wins</li>
+						</ul>
+					</li>
+					<li><p><code>returns</code> </p>
+						<ul>
+							<li><code>Promise&lt;OutputType&gt;</code></li>
+						</ul>
+					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							<p>  const crab = crawler({s3c}, &#39;s3://ericdmoore.com-images/*.jpg&#39;)
+								const count = await crab.reduce(0, using: asS3, reducer:(p)=&gt;p+1)
+							```</p>
+						</details>
+					<br/></li>
+				</ul>
+				<a href="#gt-streams" id="gt-streams" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>Streams</em></h3>
 				</a>
 				<a href="#vfilestream" id="vfilestream" style="color: inherit; text-decoration: none;">
-					<h3><strong>vfileStream()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vfilestream">vfileStream()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>a stream of <a href="https://github.com/vfile/vfile">vfile</a>s</p>
@@ -258,9 +374,23 @@
 							<li><code>Readable</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c})
+							crab.vfileStream('s3://ericdmoore.com-images/*.jpg')
+							.pipe(jpgOptim())
+							.pipe(destinationFolder())
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#vinylstream" id="vinylstream" style="color: inherit; text-decoration: none;">
-					<h3><strong>vinylStream()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vinylstream">vinylStream()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>a stream of <a href="https://github.com/gulpjs/vinyl">vinyl</a>s</p>
@@ -276,9 +406,23 @@
 							<li><code>Readable</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c})
+							crab.vinylStream('s3://ericdmoore.com-images/*.jpg')
+							.pipe(jpgOptim())
+							.pipe(destinationFolder())
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#s3stream" id="s3stream" style="color: inherit; text-decoration: none;">
-					<h3><strong>s3Stream()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#s3stream">s3Stream()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>a stream of S3 Items where S3 list object keys are mixed in with the the getObject keys - called an <code>S3Item</code></p>
@@ -294,12 +438,26 @@
 							<li><code>Readable</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c})
+							crab.s3Stream('s3://ericdmoore.com-images/*.jpg')
+							.pipe(S3ImageOptim())
+							.pipe(destinationFolder())
+							```
+						</details>
+					<br/></li>
 				</ul>
-				<a href="#gt-asyncgenerator-returns" id="gt-asyncgenerator-returns" style="color: inherit; text-decoration: none;">
-					<h3>&gt; <em>AsyncGenerator Returns</em></h3>
+				<a href="#gt-asyncgenerators" id="gt-asyncgenerators" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>AsyncGenerators</em></h3>
 				</a>
 				<a href="#vfileiter" id="vfileiter" style="color: inherit; text-decoration: none;">
-					<h3><strong>vfileIter()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vfileiter">vfileIter()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get an AyncGenerator thats is ready to run through a set of <code>VFiles</code></p>
@@ -315,9 +473,23 @@
 							<li><code>AsyncGenerator&lt;VFile, void, undefined&gt;</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c})
+							for await (const vf of crab.vfileIter('s3://ericdmoore.com-images/*.jpg') ){
+							console.log(vf)
+							}
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#vinyliter" id="vinyliter" style="color: inherit; text-decoration: none;">
-					<h3><strong>vinylIter()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vinyliter">vinylIter()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get an AyncGenerator thats is ready to run through a set of <code>Vinyls</code></p>
@@ -333,9 +505,23 @@
 							<li><code>AsyncGenerator&lt;Vinyl, void, undefined&gt;</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c})
+							for await (const v of crab.vinylIter('s3://ericdmoore.com-images/*.jpg') ){
+							console.log(vf)
+							}
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#s3iter" id="s3iter" style="color: inherit; text-decoration: none;">
-					<h3><strong>s3Iter()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#s3iter">s3Iter()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get an AyncGenerator thats is ready to run through a set of <code>S3Item</code></p>
@@ -351,12 +537,26 @@
 							<li><code>AsyncGenerator&lt;S3Item, void, undefined&gt;</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c})
+							for await (const s3i of crab.s3Iter('s3://ericdmoore.com-images/*.jpg') ){
+							console.log(s3i)
+							}
+							```
+						</details>
+					<br/></li>
 				</ul>
-				<a href="#gt-array-returns-promiselttgt" id="gt-array-returns-promiselttgt" style="color: inherit; text-decoration: none;">
-					<h3>&gt; <em>Array Returns Promise&lt;T[]&gt;</em></h3>
+				<a href="#gt-promised-arrays" id="gt-promised-arrays" style="color: inherit; text-decoration: none;">
+					<h3>&gt; <em>Promised Arrays</em></h3>
 				</a>
 				<a href="#vfilearray" id="vfilearray" style="color: inherit; text-decoration: none;">
-					<h3><strong>vfileArray()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vfilearray">vfileArray()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get an array of <code>vfiles</code> all loaded into a variable</p>
@@ -372,9 +572,21 @@
 							<li>Promise&lt;Vfile[]&gt;</li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							<p>  const crab = crawler({s3c}, &#39;s3://ericdmoore.com-images/*.jpg&#39;)
+								const vfArr = await crab.vfileArray()
+							```</p>
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#vinylarray" id="vinylarray" style="color: inherit; text-decoration: none;">
-					<h3><strong>vinylArray()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#vinylarray">vinylArray()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get an array of <code>vinyls</code> all loaded into a variable</p>
@@ -390,9 +602,21 @@
 							<li>Promise&lt;Vinyl[]&gt;</li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							<p>  const crab = crawler({s3c}, &#39;s3://ericdmoore.com-images/*.jpg&#39;)
+								const vArr = await crab.vinylArray()
+							```</p>
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#s3array" id="s3array" style="color: inherit; text-decoration: none;">
-					<h3><strong>s3Array()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/interfaces/crawfishtypes.crawfishcloudreturnnoproto.html#s3array">s3Array()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>get an array of <code>S3Items</code> all loaded into a variable</p>
@@ -408,12 +632,24 @@
 							<li>Promise&lt;S3Item[]&gt;</li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							<p>  const crab = crawler({s3c}, &#39;s3://ericdmoore.com-images/*.jpg&#39;)
+								const arr = await crab.s3Array()
+							```</p>
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#gt-exporting-functions" id="gt-exporting-functions" style="color: inherit; text-decoration: none;">
 					<h3>&gt; <em>Exporting Functions</em></h3>
 				</a>
 				<a href="#asvfile" id="asvfile" style="color: inherit; text-decoration: none;">
-					<h3><strong>asVfile()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/modules.html#asvfile">asVfile()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>turn an S3 object into a vfile</p>
@@ -421,7 +657,8 @@
 				<ul>
 					<li><p><code>params</code></p>
 						<ul>
-							<li>i : <code>S3Item</code></li>
+							<li>s3i : <code>S3Item</code></li>
+							<li>i : <code>number</code></li>
 						</ul>
 					</li>
 					<li><p><code>returns</code></p>
@@ -429,43 +666,88 @@
 							<li><code>Vfile</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVfile} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+							for await (const vf of crab.iter({body:true, using: asVfile}) ){
+							console.log(vf)
+							}
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#asvinyl" id="asvinyl" style="color: inherit; text-decoration: none;">
-					<h3><strong>asVinyl()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/modules.html#asvinyl">asVinyl()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>turn an S3 object into a vinyl</p>
 				</blockquote>
 				<ul>
 					<li><code>params</code><ul>
-							<li>i : <code>S3Item</code></li>
+							<li>s3i : <code>S3Item</code></li>
+							<li>i : <code>number</code></li>
 						</ul>
 					</li>
 					<li><code>returns</code><ul>
 							<li><code>Vinyl</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asVinyl} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+							for await (const vf of crab.iter({body:true, using: asVinyl}) ){
+							console.log(vf)
+							}
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#ass3" id="ass3" style="color: inherit; text-decoration: none;">
-					<h3><strong>asS3()</strong></h3>
+					<h3><strong><a href="https://ericdmoore.github.io/crawfishcloud/modules.html#ass3">asS3()</a></strong></h3>
 				</a>
 				<blockquote>
 					<p>Just pass the S3 object structure along</p>
 				</blockquote>
 				<ul>
 					<li><code>params</code><ul>
-							<li>i : <code>S3Item</code></li>
+							<li>s3i : <code>S3Item</code></li>
+							<li>i : <code>number</code></li>
 						</ul>
 					</li>
 					<li><code>returns</code><ul>
 							<li><code>S3Item</code></li>
 						</ul>
 					</li>
+					<li><details>
+							<summary>example</summary>
+							```ts
+							import {crawler, asS3} from 'crawfishcloud'
+							import {S3, SharedIniFileCredentials} from 'aws-sdk'
+							const credentials = new SharedIniFileCredentials({profile:'default'})
+							const s3c = new S3({credentials, region:'us-west-2'})
+							const crab = crawler({s3c}, 's3://ericdmoore.com-images/*.jpg')
+							for await (const vf of crab.iter({body:true, using: asS3}) ){
+							console.log(vf)
+							}
+							```
+						</details>
+					<br/></li>
 				</ul>
 				<a href="#namesake" id="namesake" style="color: inherit; text-decoration: none;">
 					<h4>namesake</h4>
 				</a>
-				<p><code>crawfish cloud</code> because regular crawfish are delightful and they crawl around amongst the buckets - but crawfishcloud crawl in the cloud buckets.</p>
+				<p><code>crawfish cloud</code> because why not, and because regular crawfish are delightful and they crawl around in a a bucket for a time. So clearly <code>crawfishcloud</code> is a crawler of cloud buckets.</p>
+				<p>Logo credit: deepart.io</p>
 				<!-- MARKDOWN LINKS & IMAGES -->
 				<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 			</div>
