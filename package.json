@@ -6,9 +6,8 @@
   "main": "./build/_/index.mjs",
   "exports": {
     ".": {
-      "require": "./index.js",
-      "import": "./index.js",
-      "-import": "./build/_/index.mjs"
+      "require": "./build/cjs/index.js",
+      "import":  "./build/es/index.js"
     }
   },
   "types": "./src/index.ts",
@@ -26,11 +25,11 @@
     "docs": "typedoc src/index.ts",
     "np:prep": "npm run build",
     "np": "npm run np:prep; np",
-    "clear:build": "rm -rf build/; mkdir -p build/_",
+    "clear:build": "rm -rf build/; mkdir -p build/_; mkdir -p build/es; mkdir -p build/cjs",
     "lint": "eslint src/index.ts src/crawfishcloud.ts --fix",
     "build": "npm run clear:build; npm run build:esb",
-    "build:tsc": "npm run clear:build; tsc ; rm -r build/*.map ; rm build/tsconfig.tsbuildinfo ",
-    "build:esb": "npm run clear:build ; npm run build:esb_esm ; npm run build:esb_cjs ; npm run build:esb_mincjs ; npm run build:esb_minesm",
+    "build:tsc": "tsc -m commonjs -t ES2016 --outDir build/cjs --sourceMap false; tsc -m es2020 -t ES2018 --outDir build/es --sourceMap false; rm -r build/**/*.map ; rm build/**/tsconfig.tsbuildinfo ",
+    "build:esb": "npm run build:esb_esm ; npm run build:esb_cjs ; npm run build:esb_mincjs ; npm run build:esb_minesm",
     "build:esb_esm": "esbuild src/index.ts        --format=esm --target=node12 --platform=node --bundle > build/_/index.mjs",
     "build:esb_minesm": "esbuild src/index.ts     --format=esm --target=node12 --platform=node --bundle --minify > build/_/index.min.mjs",
     "build:esb_cjs": "esbuild src/index.ts --format=cjs --target=node12 --platform=node --bundle > build/_/index.cjs",
