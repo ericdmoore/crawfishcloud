@@ -5,7 +5,7 @@
 
 # crawfishcloud
 
-> A Streaming S3 Bucket Glob Crawler
+> A Preposterous Streaming S3 Bucket Glob Crawler
 
 <!-- PROJECT SHIELDS -->
 <!--
