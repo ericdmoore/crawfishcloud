@@ -115,7 +115,7 @@ Now you can.
 
 ## Contributions
 
-Pull requests welcome. Drop me a line in the Discussion area - or submit an issue.
+Pull requests welcome. Drop me a line in the [Discussion area](/discussions) - or [submit an issue](/issues/new).
 
 ## Inspired By
 
